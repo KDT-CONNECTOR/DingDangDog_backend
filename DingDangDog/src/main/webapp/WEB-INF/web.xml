@@ -11,4 +11,17 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.xhtml</welcome-file>
   </welcome-file-list>
+  
+ 	 <!-- 멍로그 매핑 -->
+	<servlet>
+	    <servlet-name>log</servlet-name>
+	    <servlet-class>com.ddd.app.log.controller.LogController</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+	    <servlet-name>log</servlet-name>
+	    <url-pattern>*.lo</url-pattern>
+	</servlet-mapping>
+
+
 </web-app>
