@@ -1,1 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 카멜케이스 매핑 설정 -->
+		<setting name="mapUnderscoreToCamelCase" value="true"></setting>
+
+		<!-- 쿼리 결과 필드가 null인 경우 누락되지 않도록 설정 -->
+		<setting name="callSettersOnNulls" value="true"></setting>
+
+		<!-- 쿼리에 보내는 파라미터가 null인 경우 오류가 발생하는 것을 방지 설정 -->
+		<setting name="jdbcTypeForNull" value="NULL"></setting>
+	</settings>
+
+	<!-- DTO 별칭 설정 -->
+	<typeAliases>
+		<typeAlias type="com.ddd.app.user.dto.UserDTO"
+			alias="UserDTO" />
+		<typeAlias type="com.ddd.app.user.dto.UserCommonDTO"
+			alias="UserCommonDTO" />
+		<typeAlias type="com.ddd.app.user.dto.UserShelterDTO"
+			alias="UserShelterDTO" />
+	</typeAliases>
+
+	<environments default="oracle">
+		<environment id="oracle">
+			<transactionManager type="JDBC"></transactionManager>
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.OracleDriver"></property>
+				<property name="url"
+					value="jdbc:oracle:thin:@localhost:1521/xe"></property>
+				<property name="username" value="dingdong"></property>
+				<property name="password" value="dog1234"></property>
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- Mapper.xml 등록 추후 필요 -->
+	<mappers>
+		<mapper resource="com/ddd/mapper/UserMapper.xml" />
+	</mappers>
+
+
+</configuration>

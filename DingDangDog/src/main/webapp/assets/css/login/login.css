@@ -1,0 +1,199 @@
+@font-face {
+	font-family: 'BMHANNAAir';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/BMHANNAAir.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* header {
+  width: 100%;
+  height: 110px;
+  border: 1px solid black;;
+}
+
+footer {
+  width:100%;
+  height: 200px;
+  border: 1px solid black;
+} */
+main {
+	width: 100%;
+	height: 724px;
+	/* border: 1px solid black; */
+}
+
+section {
+	width: 500px;
+	height: 644px;
+	/* border: 1px solid black; */
+	margin: 33px auto;
+}
+
+.login-header-title {
+	width: 500px;
+	height: 70px;
+	/* border: 1px solid black; */
+	text-align: center;
+	line-height: 70px;
+	background-color: #F47C2A;
+	color: white;
+	font-size: 25px;
+	font-weight: bold;
+	border-radius: 10px;
+}
+
+.login-container {
+	width: 500px;
+	height: 600px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+
+.login-main {
+	width: 500px;
+	height: 450px;
+	/* border: 1px solid black; */
+}
+
+.login-main-title {
+	width: 500px;
+	height: 70px;
+	font-size: 25px;
+	font-weight: bold;
+	/* border: 1px solid black; */
+	text-align: center;
+	line-height: 70px;
+}
+
+.form-container {
+	width: 500px;
+	height: 380px;
+	/* border: 1px solid black; */
+}
+
+.login-main-member {
+	width: 500px;
+	height: 50px;
+	/* border: 1px solid black; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.login-main-shelter-choice {
+	width: 170px;
+	height: 30px;
+	border: 1px solid black;
+	text-align: center;
+	cursor: pointer;
+}
+
+.selected-login {
+	background-color: #F47C2A;
+	color: white;
+}
+
+.login-main-common-choice {
+	width: 170px;
+	height: 30px;
+	border: 1px solid black;
+	text-align: center;
+	cursor: pointer;
+}
+
+.login-footer {
+	width: 500px;
+	height: 150px;
+	/* border: 1px solid black; */
+}
+
+.login-main-container-input {
+	width: 100%;
+	height: 330px;
+	padding: 20px 75px;
+}
+
+.login-main-container-id {
+	width: 100%;
+	height: 100px;
+	display: flex;
+	flex-direction: column;
+}
+
+.login-main-container-password {
+	width: 100%;
+	height: 100px;
+	display: flex;
+	flex-direction: column;
+}
+
+.login-main-idwriting {
+	margin-bottom: 15px;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.login-main-passwordwriting {
+	margin-bottom: 15px;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#user-id, #user-pw {
+	font-size: 25px;
+	height: 50px;
+	padding: 5px 15px;
+}
+
+.login-main-input-msg {
+	height: 35px
+}
+.login-main-input-msg span{
+	color: red;
+	font-size: 16px;
+}
+
+.login-btn {
+	display: flex;
+	justify-content: center;
+/* 	margin-top: 30px; */
+}
+
+.login-btn input {
+	height: 60px;
+	width: 120px;
+	font-weight: bold;
+	border-radius: 10px;
+	font-size: 30px;
+	background-color: #F47C2A;
+	color: white;
+	cursor: pointer;
+}
+
+.login-footer {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}
+
+.signup-btn input, .find-pw input {
+	height: 30px;
+	width: 85px;
+	font-weight: bold;
+	border-radius: 10px;
+	background-color: #F47C2A;
+	color: white;
+	cursor: pointer;
+}
+
+.login-main-input-password {
+	display: flex;
+}
