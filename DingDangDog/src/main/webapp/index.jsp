@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +12,5 @@
 	번호 : ${sessionScope.userNumber}
 	<br> 닉네임 : ${sessionScope.userNickname}
 	<br> 타입 : ${sessionScope.userType}
-
 </body>
 </html>

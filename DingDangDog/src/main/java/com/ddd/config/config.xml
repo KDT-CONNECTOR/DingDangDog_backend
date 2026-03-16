@@ -20,6 +20,9 @@
 			alias="UserCommonDTO" />
 		<typeAlias type="com.ddd.app.user.dto.UserShelterDTO"
 			alias="UserShelterDTO" />
+		<typeAlias type="com.ddd.app.log.dto.LogDTO" alias="LogDTO"/>
+		<typeAlias type="com.ddd.app.log.dto.LogImgDTO" alias="LogImgDTO"/>
+		<typeAlias type="com.ddd.app.log.dto.LogCommentDTO" alias="LogCommentDTO"/>
 	</typeAliases>
 
 	<environments default="oracle">
