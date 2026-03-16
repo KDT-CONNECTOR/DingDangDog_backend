@@ -1,4 +1,4 @@
-package com.ddd.app.log.dto;
+package com.ddd.app.doglog.dto;
 
 public class LogImgDTO {
 	private int logImgNumber;

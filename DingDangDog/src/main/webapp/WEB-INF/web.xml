@@ -29,11 +29,22 @@
 	 	 <!-- 멍로그 매핑 -->
 	<servlet>
 	    <servlet-name>log</servlet-name>
-	    <servlet-class>com.ddd.app.log.controller.LogController</servlet-class>
+	    <servlet-class>com.ddd.app.doglog.controller.LogController</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
 	    <servlet-name>log</servlet-name>
 	    <url-pattern>*.lo</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 멍!로그 댓글 매핑 -->
+	<servlet>
+	    <servlet-name>logComment</servlet-name>
+	    <servlet-class>com.ddd.app.doglog.controller.LogCommentController</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+	    <servlet-name>logComment</servlet-name>
+	    <url-pattern>*.lc</url-pattern>
 	</servlet-mapping>
 </web-app>
