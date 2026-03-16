@@ -1,0 +1,173 @@
+/* header */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* header box */
+.header {
+    width: 100%;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+    background-color: white;
+    box-sizing: border-box;
+    font-family: "BM HANNA_TTF"
+}
+
+/* h-container */
+.h-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+/* header 왼쪽 : 로고, 사이트 슬로건*/
+.h-left-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.h-logo-img {
+    width: 90px;
+    height: 90px;
+}
+
+.h-slogan {
+    font-size: 18px;
+    color: #F47C2A;
+    margin-top: 10px;
+    padding-top: 25px;
+}
+
+/* header 중앙 : 메뉴, 멍! 이미지 교체 */
+.h-centent-menu {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+}
+
+.h-centent-menu ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.h-centent-menu-item {
+    justify-content: center;
+    text-decoration: none;
+    font-size: 23px;
+    color: #F47C2A;
+    display: flex;
+    align-items: center;
+}
+
+.h-left-menu,
+.h-centent-menu,
+.h-user-section,
+.h-login-link {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.h-user-info-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 현재 페이지 활성화, 이미지 처리 */
+.h-centent-menu-item.active .mug {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url('../images/mung_active.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-indent: -9999px;
+    /* '멍!' 글자 숨기기 */
+    margin-right: 5px;
+}
+
+/* 로그아웃 상태 */
+.h-user-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* 아이콘 뭉치와 로그아웃 사이 간격 */
+}
+
+.h-user-info-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.h-login-link {
+    text-decoration: none;
+    font-size: 23px;
+    color: #F47C2A;
+    justify-content: flex-end;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto;
+}
+
+/* 로그인 상태 */
+.h-user-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+.h-user-section-img {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+}
+
+.h-user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.2;
+}
+
+.h-user-text-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* 왼쪽 정렬 */
+    line-height: 1.2;
+}
+
+.h-user-nickname {
+    font-size: 18px;
+    color: #F47C2A;
+}
+
+.h-mypage-btn {
+    font-size: 14px;
+    color: #F47C2A;
+    text-decoration: underline;
+}
+
+.h-logout-btn,
+.h-login-link {
+    font-size: 23px;
+    color: #F47C2A;
+    text-decoration: none;
+    font-weight: bold;
+    min-width: 80px;
+    text-align: right;
+}
