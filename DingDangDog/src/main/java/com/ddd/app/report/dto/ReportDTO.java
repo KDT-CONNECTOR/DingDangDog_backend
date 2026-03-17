@@ -3,19 +3,13 @@ package com.ddd.app.report.dto;
 import java.sql.Date;
 
 public class ReportDTO {
-
 //	CREATE TABLE ddd_report(
-//		report_number NUMBER,
-//		reporter_user_number number,
-//		reported_user_number NUMBER,
-//		apply_number number,
-//		report_reason VARCHAR2(200) NOT NULL,
-//		report_date DATE DEFAULT sysdate,
-//		CONSTRAINT PK_report_report_number PRIMARY KEY (report_number),
-//		constraint fk_reporter_user_number foreign key( reporter_user_number) references ddd_user(user_number) ,
-//		constraint fk_reported_user_number foreign key( reported_user_number) references ddd_user(user_number),
-//		constraint uk_report_apply_number unique(reporter_user_number, apply_number)
-//	);
+//			report_number NUMBER,
+//			reporter_user_number number,
+//			reported_user_number NUMBER,
+//			apply_number number,
+//			report_reason VARCHAR2(200) NOT NULL,
+//			report_date DATE DEFAULT sysdate,
 
 	private int reportNumber;
 	private int reporterUserNumber;
@@ -77,6 +71,6 @@ public class ReportDTO {
 		return "ReportDTO [reportNumber=" + reportNumber + ", reporterUserNumber=" + reporterUserNumber
 				+ ", reportedUserNumber=" + reportedUserNumber + ", applyNumber=" + applyNumber + ", reportReason="
 				+ reportReason + ", reportDate=" + reportDate + "]";
-	}
 
+	}
 }
