@@ -11,6 +11,7 @@ public class CareApplyDTO {
 	
 	private int applyNumber;
 	private int careNumber;
+	private String userNickname;
 	private int userNumber;
 	private Date applyDate;
 	public int getApplyNumber() {
@@ -18,6 +19,12 @@ public class CareApplyDTO {
 	}
 	public void setApplyNumber(int applyNumber) {
 		this.applyNumber = applyNumber;
+	}
+	public String getUserNickname() {
+		return userNickname;
+	}
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
 	}
 	public int getCareNumber() {
 		return careNumber;
@@ -37,11 +44,12 @@ public class CareApplyDTO {
 	public void setApplyDate(Date applyDate) {
 		this.applyDate = applyDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "CareApplyDTO [applyNumber=" + applyNumber + ", careNumber=" + careNumber + ", userNumber=" + userNumber
-				+ ", applyDate=" + applyDate + "]";
+		return "CareApplyDTO [applyNumber=" + applyNumber + ", careNumber=" + careNumber + ", userNickname="
+				+ userNickname + ", userNumber=" + userNumber + ", applyDate=" + applyDate + "]";
 	}
+	
+	
 	
 }

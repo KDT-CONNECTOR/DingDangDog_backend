@@ -1,6 +1,7 @@
 package com.ddd.app.doglog.dto;
 
 public class LogImgDTO {
+
 	private int logImgNumber;
 	private int logNumber;
 	private String logImgName;
@@ -54,3 +55,4 @@ public class LogImgDTO {
 				+ ", logImgName=" + logImgName + ", logImgPath=" + logImgPath + "]";
 	}
 }
+

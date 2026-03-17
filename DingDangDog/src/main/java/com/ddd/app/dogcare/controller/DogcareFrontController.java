@@ -70,6 +70,13 @@ public class DogcareFrontController extends HttpServlet {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
 
+        if (result != null && result.getPath() != null) {
+			if (result.isRedirect()) {
+				response.sendRedirect(result.getPath());
+			} else {
+				request.getRequestDispatcher(result.getPath()).forward(request, response);
+			}
+		}
     }
 
 

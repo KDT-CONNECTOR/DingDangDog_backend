@@ -19,11 +19,12 @@
 			alias="UserCommonDTO" />
 		<typeAlias type="com.ddd.app.user.dto.UserShelterDTO"
 			alias="UserShelterDTO" />
-		<typeAlias type="com.ddd.app.doglog.dto.LogDTO" alias="LogDTO" />
+		<typeAlias type="com.ddd.app.doglog.dto.LogDTO" 
+			alias="LogDTO" />
 		<typeAlias type="com.ddd.app.doglog.dto.LogImgDTO"
 			alias="LogImgDTO" />
 		<typeAlias type="com.ddd.app.doglog.dto.LogCommentDTO"
-			alias="LogCommentDTO" />
+			alias="LogCommentDTO" /> 
 		<typeAlias type="com.ddd.app.admin.dto.AdminDTO"
 			alias="AdminDTO" />
 		<typeAlias type="com.ddd.app.admin.dto.AdminUserDTO"

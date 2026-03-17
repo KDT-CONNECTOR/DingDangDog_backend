@@ -38,7 +38,7 @@
 	<!-- 멍! 케어 매핑 -->
 	<servlet>
 		<servlet-name>care</servlet-name>
-		<servlet-class>com.ddd.app.dogcare.controller.CareFrontController</servlet-class>
+		<servlet-class>com.ddd.app.dogcare.controller.DogcareFrontController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>care</servlet-name>
