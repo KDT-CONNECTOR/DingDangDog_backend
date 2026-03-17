@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="archive">
+
+	<select id="selectDetail" parameterType="int" resultType="ArchiveDTO">
+		SELECT
+		A.DOG_NUMBER,
+		A.USER_NUMBER,
+		A.DOG_NAME,
+		A.DOG_BREED,
+		CASE
+		WHEN A.DOG_GENDER = 'M' THEN '수컷'
+		WHEN A.DOG_GENDER = 'F' THEN '암컷'
+		END AS DOG_GENDER,
+		A.DOG_AGE,
+		A.DOG_WEIGHT,
+		TO_CHAR(A.DOG_SAFE_DATE, 'YYYY.MM.DD') AS DOG_SAFE_DATE,
+		A.DOG_DETAIL,
+		S.DOG_ACTIVITY,
+		S.DOG_SOCIALITY,
+		S.DOG_INDEPENDENCE,
+		S.DOG_BARKING,
+		S.DOG_GROOMING,
+		AI.ARCHIVE_IMG_PATH
+		FROM DDD_ARCHIVE A, DDD_ARCHIVE_SCORE S, DDD_ARCHIVE_IMG AI
+		WHERE A.DOG_NUMBER = S.DOG_NUMBER(+)
+		AND A.DOG_NUMBER = AI.DOG_NUMBER(+)
+		AND A.DOG_NUMBER = #{dogNumber}
+		AND AI.ARCHIVE_IMG_NUMBER(+) = (
+		SELECT MIN(AI2.ARCHIVE_IMG_NUMBER)
+		FROM DDD_ARCHIVE_IMG AI2
+		WHERE AI2.DOG_NUMBER = A.DOG_NUMBER
+		)
+	</select>
+
+	<delete id="deleteArchive" parameterType="map">
+		DELETE FROM DDD_ARCHIVE
+		WHERE DOG_NUMBER = #{dogNumber}
+		AND (USER_NUMBER = #{userNumber} OR #{adminNumber} IS NOT NULL)
+	</delete>
+
+	<select id="selectEditInfo" parameterType="map" resultType="ArchiveDTO">
+		SELECT
+		A.DOG_NUMBER,
+		A.USER_NUMBER,
+		A.DOG_NAME,
+		A.DOG_BREED,
+		A.DOG_GENDER,
+		A.DOG_AGE,
+		A.DOG_WEIGHT,
+		TO_CHAR(A.DOG_SAFE_DATE, 'YYYY-MM-DD') AS DOG_SAFE_DATE,
+		A.DOG_DETAIL,
+		S.DOG_ACTIVITY,
+		S.DOG_SOCIALITY,
+		S.DOG_INDEPENDENCE,
+		S.DOG_BARKING,
+		S.DOG_GROOMING,
+		AI.ARCHIVE_IMG_PATH
+		FROM DDD_ARCHIVE A, DDD_ARCHIVE_SCORE S, DDD_ARCHIVE_IMG AI
+		WHERE A.DOG_NUMBER = S.DOG_NUMBER(+)
+		AND A.DOG_NUMBER = AI.DOG_NUMBER(+)
+		AND A.DOG_NUMBER = #{dogNumber}
+		AND (A.USER_NUMBER = #{userNumber} OR #{adminNumber} IS NOT NULL)
+		AND AI.ARCHIVE_IMG_NUMBER(+) = (
+		SELECT MIN(AI2.ARCHIVE_IMG_NUMBER)
+		FROM DDD_ARCHIVE_IMG AI2
+		WHERE AI2.DOG_NUMBER = A.DOG_NUMBER
+		)
+	</select>
+
+	<update id="updateArchive" parameterType="map">
+		UPDATE DDD_ARCHIVE
+		SET DOG_NAME = #{dogName},
+		DOG_BREED = #{dogBreed},
+		DOG_GENDER = #{dogGender},
+		DOG_AGE = #{dogAge},
+		DOG_WEIGHT = #{dogWeight},
+		DOG_SAFE_DATE = TO_DATE(#{dogSafeDate}, 'YYYY-MM-DD'),
+		DOG_DETAIL = #{dogDetail},
+		ARCHIVE_MODIFY_DATE = SYSDATE
+		WHERE DOG_NUMBER = #{dogNumber}
+		AND (USER_NUMBER = #{userNumber} OR #{adminNumber} IS NOT NULL)
+	</update>
+
+	<update id="updateScore" parameterType="ArchiveScoreDTO">
+		UPDATE DDD_ARCHIVE_SCORE
+		SET DOG_ACTIVITY = #{dogActivity},
+		DOG_SOCIALITY = #{dogSociality},
+		DOG_INDEPENDENCE = #{dogIndependence},
+		DOG_BARKING = #{dogBarking},
+		DOG_GROOMING = #{dogGrooming}
+		WHERE DOG_NUMBER = #{dogNumber}
+	</update>
+
+	<delete id="deleteImages" parameterType="int">
+		DELETE FROM DDD_ARCHIVE_IMG
+		WHERE DOG_NUMBER = #{dogNumber}
+	</delete>
+
+	<insert id="insertImage" parameterType="ArchiveImgDTO">
+		INSERT INTO DDD_ARCHIVE_IMG (
+		ARCHIVE_IMG_NUMBER,
+		DOG_NUMBER,
+		ARCHIVE_IMG_NAME,
+		ARCHIVE_IMG_PATH
+		) VALUES (
+		SEQ_DDD_ARCHIVE_IMG.NEXTVAL,
+		#{dogNumber},
+		#{archiveImgName},
+		#{archiveImgPath}
+		)
+	</insert>
+
+	<select id="selectAll" resultType="ArchiveDTO">
+		SELECT
+		A.DOG_NUMBER,
+		A.DOG_NAME,
+		A.DOG_BREED,
+		US.SHELTER_NAME,
+		TO_CHAR(A.DOG_ARCHIVE_DATE, 'YYYY.MM.DD') AS DOG_ARCHIVE_DATE,
+		AI.ARCHIVE_IMG_PATH
+		FROM DDD_ARCHIVE A, DDD_USER_SHELTER US, DDD_ARCHIVE_IMG AI
+		WHERE A.USER_NUMBER = US.USER_NUMBER
+		AND A.DOG_NUMBER = AI.DOG_NUMBER(+)
+		AND AI.ARCHIVE_IMG_NUMBER(+) = (
+		SELECT MIN(AI2.ARCHIVE_IMG_NUMBER)
+		FROM DDD_ARCHIVE_IMG AI2
+		WHERE AI2.DOG_NUMBER = A.DOG_NUMBER
+		)
+		ORDER BY A.DOG_NUMBER DESC
+	</select>
+
+	<select id="selectByShelter" parameterType="string" resultType="ArchiveDTO">
+		SELECT
+		A.DOG_NUMBER,
+		A.DOG_NAME,
+		A.DOG_BREED,
+		US.SHELTER_NAME,
+		TO_CHAR(A.DOG_ARCHIVE_DATE, 'YYYY.MM.DD') AS DOG_ARCHIVE_DATE,
+		AI.ARCHIVE_IMG_PATH
+		FROM DDD_ARCHIVE A, DDD_USER_SHELTER US, DDD_ARCHIVE_IMG AI
+		WHERE A.USER_NUMBER = US.USER_NUMBER
+		AND A.DOG_NUMBER = AI.DOG_NUMBER(+)
+		AND US.SHELTER_NAME LIKE '%' || #{shelterName} || '%'
+		AND AI.ARCHIVE_IMG_NUMBER(+) = (
+		SELECT MIN(AI2.ARCHIVE_IMG_NUMBER)
+		FROM DDD_ARCHIVE_IMG AI2
+		WHERE AI2.DOG_NUMBER = A.DOG_NUMBER
+		)
+		ORDER BY A.DOG_NUMBER DESC
+	</select>
+
+	<select id="selectByBreed" parameterType="string" resultType="ArchiveDTO">
+		SELECT
+		A.DOG_NUMBER,
+		A.DOG_NAME,
+		A.DOG_BREED,
+		US.SHELTER_NAME,
+		TO_CHAR(A.DOG_ARCHIVE_DATE, 'YYYY.MM.DD') AS DOG_ARCHIVE_DATE,
+		AI.ARCHIVE_IMG_PATH
+		FROM DDD_ARCHIVE A, DDD_USER_SHELTER US, DDD_ARCHIVE_IMG AI
+		WHERE A.USER_NUMBER = US.USER_NUMBER
+		AND A.DOG_NUMBER = AI.DOG_NUMBER(+)
+		AND A.DOG_BREED LIKE '%' || #{dogBreed} || '%'
+		AND AI.ARCHIVE_IMG_NUMBER(+) = (
+		SELECT MIN(AI2.ARCHIVE_IMG_NUMBER)
+		FROM DDD_ARCHIVE_IMG AI2
+		WHERE AI2.DOG_NUMBER = A.DOG_NUMBER
+		)
+		ORDER BY A.DOG_NUMBER DESC
+	</select>
+
+	<insert id="insertArchive" parameterType="ArchiveDTO">
+		INSERT INTO DDD_ARCHIVE (
+		DOG_NUMBER,
+		USER_NUMBER,
+		DOG_NAME,
+		DOG_BREED,
+		DOG_GENDER,
+		DOG_AGE,
+		DOG_WEIGHT,
+		DOG_SAFE_DATE,
+		DOG_ARCHIVE_DATE,
+		DOG_DETAIL
+		) VALUES (
+		SEQ_DDD_ARCHIVE.NEXTVAL,
+		#{userNumber},
+		#{dogName},
+		#{dogBreed},
+		#{dogGender},
+		#{dogAge},
+		#{dogWeight},
+		TO_DATE(#{dogSafeDate}, 'YYYY-MM-DD'),
+		SYSDATE,
+		#{dogDetail}
+		)
+	</insert>
+
+	<select id="getCurrSeq" resultType="int">
+		SELECT SEQ_DDD_ARCHIVE.CURRVAL
+		FROM DUAL
+	</select>
+
+	<insert id="insertScore" parameterType="ArchiveScoreDTO">
+		INSERT INTO DDD_ARCHIVE_SCORE (
+		DOG_NUMBER,
+		DOG_ACTIVITY,
+		DOG_SOCIALITY,
+		DOG_INDEPENDENCE,
+		DOG_BARKING,
+		DOG_GROOMING
+		) VALUES (
+		#{dogNumber},
+		#{dogActivity},
+		#{dogSociality},
+		#{dogIndependence},
+		#{dogBarking},
+		#{dogGrooming}
+		)
+	</insert>
+
+	<insert id="insertImageWrite" parameterType="ArchiveImgDTO">
+		INSERT INTO DDD_ARCHIVE_IMG (
+		ARCHIVE_IMG_NUMBER,
+		DOG_NUMBER,
+		ARCHIVE_IMG_NAME,
+		ARCHIVE_IMG_PATH
+		) VALUES (
+		SEQ_DDD_ARCHIVE_IMG.NEXTVAL,
+		#{dogNumber},
+		#{archiveImgName},
+		#{archiveImgPath}
+		)
+	</insert>
+
+</mapper>
