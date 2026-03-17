@@ -1,6 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,60 @@
   <!-- header -->
   <div id="header-container"></div>
 
+<<<<<<< HEAD
+  <main class="doglog-write">
+    <div class="container">
+      <div class="container-header">
+        <h2 id="main-title">멍! 로그 작성</h2>
+      </div>
+
+      <div class="container-body">
+        <div class="doglog-write-container">
+          <div class="write-title">
+            <input type="text" placeholder="제목을 입력해주세요" />
+          </div>
+
+          <div class="write-main-container">
+            <!-- 대표 이미지 -->
+            <div class="write-main-img">
+              <div class="img-preview-box">
+                <img id="thumbnailPreview" src="" alt="대표 이미지 미리보기" />
+                <span class="img-placeholder">대표 이미지</span>
+              </div>
+            </div>
+
+            <!-- 본문 입력 -->
+            <div class="write-main-post">
+              <div class="write-content-editor" id="writeContentEditor" contenteditable="true"
+                data-placeholder="내용을 입력해주세요"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-footer">
+        <div class="footer-btn-wrap">
+          <input type="file" id="imageUpload" accept="image/*" multiple hidden />
+
+          <div class="footer-left">
+            <label for="imageUpload" class="btn btn-upload">이미지 첨부</label>
+          </div>
+
+          <div class="footer-right">
+            <a href="" class="btn btn-save">저장하기</a>
+            <a href="" class="btn btn-cancel">취소</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- footer -->
+  <div id="footer-container"></div>
+  <!-- js -->
+  <script src="/assets/js/header-footer.js"></script>
+
+
+=======
   <main>
     <div class="doglog-main-container">
       <div class="main-container-header">
@@ -748,6 +803,7 @@
     <!-- js -->
     <script src="/assets/js/header-footer.js"></script>
 
+>>>>>>> d8ad925fa7fa32c2fcb63f78a48583663e8b2478
 </body>
 
 </html>
