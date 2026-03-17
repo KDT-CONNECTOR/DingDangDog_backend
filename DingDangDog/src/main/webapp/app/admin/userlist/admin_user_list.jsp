@@ -44,18 +44,16 @@
 						</div>
 
 						<c:forEach var="user" items="${userList}">
-							<div class="admin-list-row">
+							<a
+								href="${pageContext.request.contextPath}/admin/userDetailOk.ad?userNumber=${user.userNumber}&userType=C"
+								class="admin-list-row">
 								<div class="user-number">${user.userNumber}</div>
-								<div class="user-id">
-									<a
-										href="${pageContext.request.contextPath}/admin/userDetailOk.ad?userNumber=${user.userNumber}&userType=C">
-										${user.userId} </a>
-								</div>
+								<div class="user-id">${user.userId}</div>
 								<div class="user-name">${user.userName}</div>
 								<div class="user-nickname">${user.userNickname}</div>
 								<div class="user-phone">${user.userPhone}</div>
 								<div class="user-email">${user.userEmail}</div>
-							</div>
+							</a>
 						</c:forEach>
 					</c:when>
 
@@ -70,13 +68,11 @@
 						</div>
 
 						<c:forEach var="user" items="${userList}">
-							<div class="admin-list-row">
+							<a
+								href="${pageContext.request.contextPath}/admin/userDetailOk.ad?userNumber=${user.userNumber}&userType=S"
+								class="admin-list-row">
 								<div class="user-number">${user.userNumber}</div>
-								<div class="user-id">
-									<a
-										href="${pageContext.request.contextPath}/admin/userDetailOk.ad?userNumber=${user.userNumber}&userType=S">
-										${user.userId} </a>
-								</div>
+								<div class="user-id">${user.userId}</div>
 								<div class="user-shelter-name">${user.shelterName}</div>
 								<div class="user-phone">${user.userPhone}</div>
 								<div class="user-email">${user.userEmail}</div>
@@ -86,7 +82,7 @@
 								<c:if test="${user.shelterCertification == 'Y'}">
 									<div class="user-confirm-check">인증완료</div>
 								</c:if>
-							</div>
+							</a>
 						</c:forEach>
 					</c:when>
 				</c:choose>
