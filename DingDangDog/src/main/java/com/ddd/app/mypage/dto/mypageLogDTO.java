@@ -1,6 +1,6 @@
 package com.ddd.app.mypage.dto;
 
-public class mypageLogDTO {
+public class MypageLogDTO {
 	private int logNumber;
 	private int userNumber;
 	private String userNickname;
@@ -9,9 +9,6 @@ public class mypageLogDTO {
 	private String logDate;
 	private String logModifyDate;
 	private String representativeImgPath;
-
-	public mypageLogDTO() {
-	}
 
 	public int getLogNumber() {
 		return logNumber;
