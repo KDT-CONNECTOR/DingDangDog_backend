@@ -4,8 +4,6 @@
 
 	<insert id="insertMatchingResult" parameterType="MatchingResultDTO">
 	
-		-- 결과 저장 
-	
 		INSERT INTO DDD_MATCH_RESULT (
 		RESULT_NUMBER,
 		USER_NUMBER,
@@ -28,9 +26,7 @@
 	</insert>
 
 	<select id="selectLatestResult" parameterType="int"
-		resultType="MatchingResultDTO">
-		
-		-- 결과 하나만 보기  
+		resultType="MatchingResultDTO"> 
 		
 		SELECT
 		RESULT_NUMBER,
@@ -52,8 +48,6 @@
 
 	<select id="selectAllResults" parameterType="int"
 		resultType="MatchingResultDTO">
-		
-		-- 나의 전체정보 보기  
 		
 		SELECT
 		RESULT_NUMBER,
