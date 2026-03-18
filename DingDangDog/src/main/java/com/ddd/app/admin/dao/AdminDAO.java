@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.ddd.app.admin.dto.AdminCareDTO;
 import com.ddd.app.admin.dto.AdminDTO;
 import com.ddd.app.admin.dto.AdminUserDTO;
 import com.ddd.config.MyBatisConfig;
@@ -111,4 +112,9 @@ public class AdminDAO {
 		sqlSession.update("adminUser.updateShelterCertification", userNumber);
 	}
 
+	// 멍! 케어 전체 목록 조회
+	public List<AdminCareDTO> selectAdminCareList(Map<String, Integer> pageMap){
+		System.out.println("멍! 케어 전체 목록 조회");
+		return sqlSession.selectList("adminCare.selectCareList", pageMap);
+	}
 }

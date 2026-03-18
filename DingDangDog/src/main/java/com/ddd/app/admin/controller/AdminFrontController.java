@@ -92,6 +92,7 @@ public class AdminFrontController extends HttpServlet {
 			result = new AdminUserShelterConfirmOkController().execute(request, response);
 			System.out.println("보호소 회원 상세 페이지 이동");
 			break;
+		case "/admin/
 		}
 
 		if (result != null && result.getPath() != null) {

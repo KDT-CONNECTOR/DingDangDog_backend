@@ -1,1 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mypageScare">
+
+<!-- 내가 등록한 멍! 케어 리스트 -->
+<select id="selectMyCareList" parameterType="int" resultType="MypageScareDTO">
+    SELECT
+        C.CARE_NUMBER,
+        C.CARE_TITLE,
+        TO_CHAR(C.CARE_WRITE_DATE, 'YYYY-MM-DD') AS CARE_WRITE_DATE,
+        NVL(A.APPLY_COUNT, 0) AS APPLY_COUNT,
+        C.CARE_RECRUIT
+    FROM DDD_CARE C
+    LEFT JOIN (
+        SELECT 
+            CA.CARE_NUMBER, 
+            COUNT(*) AS APPLY_COUNT
+        FROM DDD_CARE_APPLY CA
+        GROUP BY CA.CARE_NUMBER
+    ) A ON C.CARE_NUMBER = A.CARE_NUMBER
+    WHERE C.USER_NUMBER = #{userNumber}
+    ORDER BY C.CARE_NUMBER DESC
+</select>
+</mapper>

@@ -1,29 +1,37 @@
-async function includeLayout() {
-    const headerContainer = document.getElementById('header-container');
-    const footerContainer = document.getElementById('footer-container');
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    const headerFile = isLoggedIn ? './header_login.html' : './header_logout.html';
+function includeLayout() {
 
+    var headerContainer = document.getElementById('header-container');
+    var footerContainer = document.getElementById('footer-container');
 
+    var isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+    var headerFile = isLoggedIn ? './header_login.html' : './header_logout.html';
+
+    // header
     if (headerContainer) {
-        try {
-            const response = await fetch(headerFile);
-            const data = await response.text();
-            headerContainer.innerHTML = data;
-        } catch (error) {
-            console.error('헤더 로드 실패:', error);
-        } ÍÍÍ
+        fetch(headerFile)
+            .then(function (response) {
+                return response.text();
+            })
+            .then(function (data) {
+                headerContainer.innerHTML = data;
+            })
+            .catch(function (error) {
+                console.error('헤더 로드 실패:', error);
+            });
     }
 
+    // footer
     if (footerContainer) {
-        try {
-            const response = await fetch('./footer.html');
-            const data = await response.text();
-            footerContainer.innerHTML = data;
-        } catch (error) {
-            console.error('풋터 로드 실패:', error);
-        }
+        fetch('./footer.html')
+            .then(function (response) {
+                return response.text();
+            })
+            .then(function (data) {
+                footerContainer.innerHTML = data;
+            })
+            .catch(function (error) {
+                console.error('푸터 로드 실패:', error);
+            });
     }
 }
-
-window.addEventListener('DOMContentLoaded', includeLayout);

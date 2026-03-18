@@ -2,7 +2,7 @@ package com.ddd.app.mypage.dto;
 
 import java.sql.Date;
 
-public class mypageCcareDTO {
+public class MypageCcareDTO {
 //	-- 멍케어 신청목록 조회
 //	SELECT
 //	    CA.APPLY_NUMBER,

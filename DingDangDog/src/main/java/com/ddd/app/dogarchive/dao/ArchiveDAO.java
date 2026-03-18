@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.ddd.app.dogarchive.controller.ArchiveListController;
 import com.ddd.app.dogarchive.dto.ArchiveDeleteDTO;
 import com.ddd.app.dogarchive.dto.ArchiveListDTO;
 import com.ddd.app.dogarchive.dto.ArchiveReadDTO;

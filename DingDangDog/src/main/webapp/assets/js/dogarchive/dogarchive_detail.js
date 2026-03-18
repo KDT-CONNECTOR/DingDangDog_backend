@@ -155,8 +155,10 @@ function canDeleteArchive() {
    이벤트
 ========================= */
 function bindEvents() {
-  btnDelete?.addEventListener("click", handleDelete);
-}
+	if (btnDelete) {
+	    btnDelete.addEventListener("click", handleDelete);
+	  }
+};
 
 function handleDelete() {
   if (!canDeleteArchive()) {
