@@ -68,11 +68,21 @@
 	<!-- 헤더 매핑 -->
 	<servlet>
 		<servlet-name>header</servlet-name>
-		<servlet-class>com.ddd.app.header.controller.mainFrontController</servlet-class>
+		<servlet-class>com.ddd.app.header.controller.headerController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>header</servlet-name>
 		<url-pattern>*.he</url-pattern>
+	</servlet-mapping>
+
+	<!-- 메인 매핑 -->
+	<servlet>
+		<servlet-name>main</servlet-name>
+		<servlet-class>com.ddd.app.main.controller.mainController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>main</servlet-name>
+		<url-pattern>*.main</url-pattern>
 	</servlet-mapping>
 	
 	<!-- 마이페이지 매핑 -->
