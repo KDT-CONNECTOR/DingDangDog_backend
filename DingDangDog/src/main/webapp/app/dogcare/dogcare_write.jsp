@@ -11,7 +11,8 @@
 </head>
 
 <body>
-
+<% session.setAttribute("userNumber", 1); %>
+<%=session.getAttribute("userNumber") %>>
 	<main>
 		<div class="dogcare-main-container">
 			<div class="main-header">
@@ -20,7 +21,7 @@
 			<div class="main-content">
 				<div class="content-header">멍! 케어 일정 등록</div>
 				<!-- form 시작 -->
-				<form action="${pageContext.request.contextPath}/care/write.ca"
+				<form action="${pageContext.request.contextPath}/care/writeOk.ca"
 					method="post">
 					<div class="dogcare-write-container">
 						<!-- 제목 -->
@@ -49,8 +50,7 @@
 						<!-- 버튼 -->
 						<div class="detail-footer-container">
 							<div>
-								<button type="submit" class="btn-dogcare-post"
-									onclick="location.href='${pageContext.request.contextPath}/care/list.ca'">멍! 케어 등록</button>
+								<button type="submit" class="btn-dogcare-post">멍! 케어 등록</button>
 							</div>
 						</div>
 					</div>

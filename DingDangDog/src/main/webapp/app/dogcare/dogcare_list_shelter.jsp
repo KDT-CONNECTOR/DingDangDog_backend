@@ -48,17 +48,17 @@
 								${care.careTitle} </a>
 						</div>
 
-						<div class="dogcare-date">${care.careDateStr}</div>
+						<div class="dogcare-date">${care.careDate}</div>
 
 						<div class="dogcare-nickname">${care.userNickname}</div>
 
-						<div class="dogcare-registdate">${care.careWriteDateStr}</div>
+						<div class="dogcare-registdate">${care.careWriteDate}</div>
 
 					</div>
 				</c:forEach>
 
 				<!-- 검색 -->
-				<form action="${pageContext.request.contextPath}/care/list"
+				<form action="${pageContext.request.contextPath}/care/list.ca"
 					method="get">
 					<div class="search-box">
 						<select name="type" class="search-select box-shadow">

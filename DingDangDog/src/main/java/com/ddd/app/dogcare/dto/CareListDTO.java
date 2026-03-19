@@ -22,8 +22,10 @@ public class CareListDTO {
 	public void setCareTitle(String careTitle) {
 		this.careTitle = careTitle;
 	}
-	public LocalDateTime getCareDate() {
-		return careDate;
+	public String getCareDate() {
+		if (careDate == null)
+			return "";
+		return careDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	}
 	public void setCareDate(LocalDateTime careDate) {
 		this.careDate = careDate;
@@ -34,26 +36,19 @@ public class CareListDTO {
 	public void setUserNickname(String userNickname) {
 		this.userNickname = userNickname;
 	}
-	public LocalDateTime getCareWriteDate() {
-		return careWriteDate;
+	public String getCareWriteDate() {
+		if (careWriteDate == null)
+			return "";
+		return careWriteDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	}
 	public void setCareWriteDate(LocalDateTime careWriteDate) {
 		this.careWriteDate = careWriteDate;
 	}
 	
-	private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-	public String getCareDateStr() {
-		if (careDate == null)
-			return "";
-		return careDate.format(DATE_FORMAT);
-	}
+	
 
-	public String getCareWriteDateStr() {
-		if (careWriteDate == null)
-			return "";
-		return careWriteDate.format(DATE_FORMAT);
-	}
+	
 	
 	@Override
 	public String toString() {

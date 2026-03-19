@@ -24,10 +24,20 @@ public class CareDetailController implements Execute{
 		int careNumber = Integer.parseInt(request.getParameter("careNumber"));
 		
 		CareDetailDTO detail = careDAO.selectCare(careNumber);
-
 		request.setAttribute("care", detail);
 		System.out.println("상세정보 출력");
-		result.setPath("/app/care/care_detail_common.jsp");
+		
+		CareDetailDTO care = careDAO.selectCare(careNumber);
+
+		// 신청현황 따로 조회
+		String applyStatus = careDAO.getApplyStatus(careNumber);
+		// care 객체에 넣기
+		care.setApplyStatus(applyStatus);
+		// request에 담기
+		request.setAttribute("care", care);
+		System.out.println("care."+detail.getApplyStatus());
+
+		result.setPath("/app/dogcare/dogcare_detail_shelter.jsp");
 		result.setRedirect(false);
 
 		return result;

@@ -46,7 +46,7 @@
       </button>
       <div class="footer-right">
         <div class="apply-status" id="applyStatusBtn">
-          신청 현황 <span id="applyCount">${care.applyCount}</span>/${care.careRecruit}
+          신청 현황 <span id="applyCount">${care.applyStatus}</span>
         </div>
 
       </div>

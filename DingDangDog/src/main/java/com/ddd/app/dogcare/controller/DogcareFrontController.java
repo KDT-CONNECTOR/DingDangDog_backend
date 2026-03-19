@@ -71,6 +71,7 @@ public class DogcareFrontController extends HttpServlet {
         	System.out.println("케어 신고 처리 요청");
         	result = new ReportOkController().execute(request, response);
         	System.out.println("케어 신고 처리 완료");
+        	break;
         case "/care/write.ca":
             System.out.println("케어 글 작성페이지 이동 요청");
             result = new CareWriteController().execute(request, response);
@@ -90,6 +91,7 @@ public class DogcareFrontController extends HttpServlet {
         	System.out.println("케어 글 수정 처리 요청");
         	result = new CareUpdateOkController().execute(request, response);
         	System.out.println("케어 글 수정 완료 요청");
+        	break;
         case "/care/delete.ca":
             System.out.println("케어 글 삭제 요청");
             result = new CareDeleteController().execute(request, response);

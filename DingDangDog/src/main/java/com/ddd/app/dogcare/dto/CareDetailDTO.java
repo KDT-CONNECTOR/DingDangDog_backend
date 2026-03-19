@@ -22,6 +22,25 @@ public class CareDetailDTO {
 	private LocalDateTime careWriteDate;
 	private int applyNumber;
 	private int userNumber;
+	private String applyStatus;
+	private String careStatus;
+	
+
+	public String getCareStatus() {
+		return careStatus;
+	}
+
+	public void setCareStatus(String careStatus) {
+		this.careStatus = careStatus;
+	}
+
+	public String getApplyStatus() {
+		return applyStatus;
+	}
+
+	public void setApplyStatus(String applyStatus) {
+		this.applyStatus = applyStatus;
+	}
 
 	public int getCareNumber() {
 		return careNumber;
@@ -39,16 +58,20 @@ public class CareDetailDTO {
 		this.careTitle = careTitle;
 	}
 
-	public String getCarePost() {
-		return carePost;
+	public String getPostDate() {
+		if (careDate == null)
+			return "";
+		return careDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	}
 
 	public void setCarePost(String carePost) {
 		this.carePost = carePost;
 	}
 
-	public LocalDateTime getCareDate() {
-		return careDate;
+	public String getCareDate() {
+		if (careDate == null)
+			return "";
+		return careDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	}
 
 	public void setCareDate(LocalDateTime careDate) {
@@ -71,8 +94,10 @@ public class CareDetailDTO {
 		this.userNickname = userNickname;
 	}
 
-	public LocalDateTime getCareWriteDate() {
-		return careWriteDate;
+	public String getWriteDate() {
+		if (careDate == null)
+			return "";
+		return careDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	}
 
 	public void setCareWriteDate(LocalDateTime careWriteDate) {
