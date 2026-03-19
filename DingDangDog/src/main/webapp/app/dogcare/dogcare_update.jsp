@@ -24,7 +24,7 @@
 				<form action="${pageContext.request.contextPath}/care/updateOk.ca"
 					method="post">
 
-					<!-- 🔥 hidden (필수) -->
+					<!-- hidden -->
 					<input type="hidden" name="careNumber" value="${care.careNumber}" />
 
 					<div class="dogcare-write-container">
@@ -34,7 +34,7 @@
 						<div class="write-box-container">
 
 							<input class="title-write-box" type="text" name="careTitle"
-								value="${care.careTitle}" required>
+								value="${care.careTitle}" required />
 
 							<!-- 모집 인원 -->
 							<div class="dogcare-number">

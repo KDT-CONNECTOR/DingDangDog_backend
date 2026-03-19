@@ -27,6 +27,9 @@ public class AdminCareListOkController implements Execute {
 		// 페이징 처리
 		String temp = request.getParameter("page");
 		int page = (temp == null) ? 1 : Integer.valueOf(temp); // 페이지 번호 기본값을 1로 설정하겠다
+		if (page < 1) {
+		    page = 1;
+		}
 		// 한 페이지당 게시글 수
 		int rowCount = 15;
 		// 페이지 버튼 수

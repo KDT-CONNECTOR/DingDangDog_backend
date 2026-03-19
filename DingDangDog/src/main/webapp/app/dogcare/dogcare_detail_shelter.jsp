@@ -41,13 +41,19 @@
       </div>
     </div>
     <div class="detail-footer-container">
-      <button class="btn-list" onclick="location.href='${pageContext.request.contextPath}/care/list.ca'">
+      <button type="button" class="btn-list" onclick="location.href='${pageContext.request.contextPath}/care/list.ca'">
         목록으로
       </button>
       <div class="footer-right">
         <div class="apply-status" id="applyStatusBtn">
           신청 현황 <span id="applyCount">${care.applyStatus}</span>
         </div>
+      <button type="button" class="btn-list" onclick="location.href='${pageContext.request.contextPath}/care/update.ca'">
+        수정하기
+      </button>
+      <button type="button" class="btn-list" onclick="location.href='${pageContext.request.contextPath}/care/delete.ca'">
+        삭제
+      </button>
 
       </div>
     </div>
@@ -87,7 +93,7 @@
           <div>${user.userName}</div>
           <div>${user.userPhone}</div>
 
-          <!-- ⭐ 신고 form -->
+          <!-- 신고 form -->
           <c:if test="${care.careStatus eq 'close'}">
 
             <form action="${pageContext.request.contextPath}/care/report.care" method="post">

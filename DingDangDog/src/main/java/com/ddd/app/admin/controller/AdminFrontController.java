@@ -101,7 +101,7 @@ public class AdminFrontController extends HttpServlet {
 			System.out.println("멍! 케어 상세페이지 요청");
 			result = new AdminCareDetailOkController().execute(request, response);
 			System.out.println("멍! 케어 상세페이지 이동");
-		case "/admin/admin/adminCareDeleteOk.ad":
+		case "/admin/adminCareDeleteOk.ad":
 			System.out.println("멍! 케어 상세페이지 삭제 요청");
 			result = new AdminCareDeleteOkController().execute(request, response);
 			System.out.println("멍! 케어 상세페이지 삭제 완료");

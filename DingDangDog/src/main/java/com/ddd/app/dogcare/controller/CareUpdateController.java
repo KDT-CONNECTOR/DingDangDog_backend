@@ -19,7 +19,8 @@ public class CareUpdateController implements Execute {
 		System.out.println("=== CareUpdateController 실행 ===");
 		
         Result result = new Result();
-        result.setPath("/app/dogcare/dogcare_write.jsp");
+        
+        result.setPath("/app/dogcare/dogcare_update.jsp");
         result.setRedirect(false);
 
         return result;

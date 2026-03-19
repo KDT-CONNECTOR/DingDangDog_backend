@@ -49,8 +49,10 @@ public class AdminCareDTO {
 	public void setCarePost(String carePost) {
 		this.carePost = carePost;
 	}
-	public LocalDateTime getCareDate() {
-		return careDate;
+	public String getCareDate() {
+		if (careDate == null)
+			return "";
+		return careDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	}
 	public void setCareDate(LocalDateTime careDate) {
 		this.careDate = careDate;
@@ -61,8 +63,10 @@ public class AdminCareDTO {
 	public void setCareRecruit(int careRecruit) {
 		this.careRecruit = careRecruit;
 	}
-	public LocalDateTime getCareWriteDate() {
-		return careWriteDate;
+	public String getWriteDate() {
+		if (careWriteDate == null)
+			return "";
+		return careWriteDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	}
 	public void setCareWriteDate(LocalDateTime careWriteDate) {
 		this.careWriteDate = careWriteDate;
@@ -97,19 +101,6 @@ public class AdminCareDTO {
 	public void setApplyNumber(int applyNumber) {
 		this.applyNumber = applyNumber;
 	}
-	
-	private static final DateTimeFormatter DATE_FORMAT =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    
-    public String getCareDateStr() {
-        if (careDate == null) return "";
-        return careDate.format(DATE_FORMAT);
-    }
-
-    public String getCareWriteDateStr() {
-        if (careWriteDate == null) return "";
-        return careWriteDate.format(DATE_FORMAT);
-    }
 	
 	@Override
 	public String toString() {
