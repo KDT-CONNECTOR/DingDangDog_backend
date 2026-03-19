@@ -11,22 +11,25 @@ import com.ddd.app.dogcare.dto.CareApplyDTO;
 public class CareApplyController implements Execute{
 
 	public Result execute(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("CareApplyController 실행");
-
-		int careNumber = Integer.parseInt(request.getParameter("careNumber"));
-		int userNumber = Integer.parseInt(request.getParameter("userNumber"));
-
-		CareApplyDTO dto = new CareApplyDTO();
-		dto.setCareNumber(careNumber);
-		dto.setUserNumber(userNumber);
+		System.out.println("=== CareApplyController 실행 ===");
 
 		CareDAO careDAO = new CareDAO();
-
-		careDAO.applyCare(dto);
-
+		CareApplyDTO dto = new CareApplyDTO();
 		Result result = new Result();
+		
+		// 게시글 번호 받기
+		int careNumber = Integer.parseInt(request.getParameter("careNumber"));
+		// 회원 번호 받기
+		int userNumber = Integer.parseInt(request.getParameter("userNumber"));
+		
+		dto.setCareNumber(careNumber);
+		dto.setUserNumber(userNumber);
+		
+		// 봉사 신청
+		careDAO.applyCare(dto);
+		
+		result.setPath("/app/care/detail.ca?careNumber=" + careNumber);
 		result.setRedirect(true);
-		result.setPath("/app/care/detail.care?careNumber=" + careNumber);
 
 		return result;
 	}

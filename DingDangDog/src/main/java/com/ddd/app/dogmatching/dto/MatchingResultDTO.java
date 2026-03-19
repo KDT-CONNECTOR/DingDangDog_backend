@@ -1,5 +1,5 @@
 package com.ddd.app.dogmatching.dto;
-// 1. 멍매칭 결과 
+// ===== 멍! 매칭 결과 =====
 
 public class MatchingResultDTO {
 	/**

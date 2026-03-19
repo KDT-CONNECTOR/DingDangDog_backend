@@ -71,11 +71,20 @@ public class DogcareFrontController extends HttpServlet {
             result = new CareWriteController().execute(request, response);
             System.out.println("케어 글 작성페이지 이동 완료");
             break;
+        case "/care/writeOk.ca":
+        	System.out.println("케어 글 작성 처리 요청");
+        	result = new CareWriteOkController().execute(request, response);
+        	System.out.println("케어 글 작성 완료 요청");
+        	break;
         case "/care/update.ca":
-            System.out.println("케어 글 수정 요청");
+            System.out.println("케어 글 수정페이지 이동 요청");
             result = new CareUpdateController().execute(request, response);
-            System.out.println("케어글 수정 완료");
+            System.out.println("케어 글 수정페이지 이동 완료");
             break;
+        case "/care/updateOk.ca":
+        	System.out.println("케어 글 수정 처리 요청");
+        	result = new CareUpdateOkController().execute(request, response);
+        	System.out.println("케어 글 수정 완료 요청");
         case "/care/delete.ca":
             System.out.println("케어 글 삭제 요청");
             result = new CareDeleteController().execute(request, response);
@@ -90,10 +99,6 @@ public class DogcareFrontController extends HttpServlet {
             System.out.println("케어 신청 취소 요청");
             result = new CareCancelController().execute(request, response);
             System.out.println("케어 신청 취소 완료");
-            break;
-        case "/care/applyUsers.ca":
-            System.out.println("신청자 목록 조회");
-            result = new CareApplyUserController().execute(request, response);
             break;
         }
 

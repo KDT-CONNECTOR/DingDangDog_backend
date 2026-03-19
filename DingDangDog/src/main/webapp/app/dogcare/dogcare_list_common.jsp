@@ -41,95 +41,63 @@
 
       <!-- 게시글 목록 -->
       <c:forEach var="care" items="${careList}">
-
         <div class="dogcare-list-row">
-
           <div class="dogcare-number">
             ${care.careNumber}
           </div>
-
           <div class="dogcare-title">
             <a href="${pageContext.request.contextPath}/care/detail?careNumber=${care.careNumber}">
               ${care.careTitle}
             </a>
           </div>
-
           <div class="dogcare-date">
             ${care.careDate}
           </div>
-
           <div class="dogcare-nickname">
             ${care.userNickname}
           </div>
-
           <div class="dogcare-registdate">
             ${care.careWriteDate}
           </div>
-
         </div>
-
       </c:forEach>
-
 
       <!-- 검색 -->
       <form action="${pageContext.request.contextPath}/care/list" method="get">
-
         <div class="search-box">
-
           <select name="type" class="search-select box-shadow">
             <option value="shelter">보호소명</option>
-            <option value="date">봉사날짜</option>
+            <option value="title">제목</option>
           </select>
-
           <input type="text" name="keyword" class="search-input box-shadow" />
-
           <button class="btn-search box-shadow">
             검색
           </button>
-
         </div>
-
       </form>
-
 
       <!-- 페이지네이션 -->
       <div class="main-container-footer">
-
         <div class="pagination">
-
           <ul class="page-list">
-
             <li>
               <button class="prev-btn">&lt;</button>
             </li>
-
             <c:forEach var="page" begin="1" end="${totalPage}">
-
               <li>
-
                 <button class="page-item
                 <c:if test='${page == currentPage}'>current-page</c:if>'">
-
                   ${page}
-
                 </button>
-
               </li>
-
             </c:forEach>
-
             <li>
               <button class="next-btn">&gt;</button>
             </li>
-
           </ul>
-
         </div>
-
       </div>
-
     </div>
-
   </div>
 </main>
 

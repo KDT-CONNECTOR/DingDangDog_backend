@@ -1,13 +1,14 @@
 package com.ddd.app.dogcare.dto;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class CareListDTO {
 	private int careNumber;
 	private String careTitle;
-	private Date careDate;
+	private LocalDateTime careDate;
 	private String userNickname;
-	private Date careWriteDate;
+	private LocalDateTime careWriteDate;
 	
 	public int getCareNumber() {
 		return careNumber;
@@ -21,10 +22,10 @@ public class CareListDTO {
 	public void setCareTitle(String careTitle) {
 		this.careTitle = careTitle;
 	}
-	public Date getCareDate() {
+	public LocalDateTime getCareDate() {
 		return careDate;
 	}
-	public void setCareDate(Date careDate) {
+	public void setCareDate(LocalDateTime careDate) {
 		this.careDate = careDate;
 	}
 	public String getUserNickname() {
@@ -33,11 +34,25 @@ public class CareListDTO {
 	public void setUserNickname(String userNickname) {
 		this.userNickname = userNickname;
 	}
-	public Date getCareWriteDate() {
+	public LocalDateTime getCareWriteDate() {
 		return careWriteDate;
 	}
-	public void setCareWriteDate(Date careWriteDate) {
+	public void setCareWriteDate(LocalDateTime careWriteDate) {
 		this.careWriteDate = careWriteDate;
+	}
+	
+	private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+	public String getCareDateStr() {
+		if (careDate == null)
+			return "";
+		return careDate.format(DATE_FORMAT);
+	}
+
+	public String getCareWriteDateStr() {
+		if (careWriteDate == null)
+			return "";
+		return careWriteDate.format(DATE_FORMAT);
 	}
 	
 	@Override
@@ -45,6 +60,5 @@ public class CareListDTO {
 		return "CareListDTO [careNumber=" + careNumber + ", careTitle=" + careTitle + ", careDate=" + careDate
 				+ ", userNickname=" + userNickname + ", careWriteDate=" + careWriteDate + "]";
 	}
-	
 	
 }

@@ -63,7 +63,7 @@
 
     <!-- 목록 -->
     <button class="btn-list"
-      onclick="location.href='${pageContext.request.contextPath}/care/list.care'">
+      onclick="location.href='${pageContext.request.contextPath}/care/list.ca'">
       목록으로
     </button>
 
@@ -78,7 +78,7 @@
 
       <!-- 신청 버튼 -->
       <button class="btn-apply"
-        onclick="location.href='${pageContext.request.contextPath}/care/apply.care?careNumber=${care.careNumber}'">
+        onclick="location.href='${pageContext.request.contextPath}/care/apply.ca?careNumber=${care.careNumber}'">
         신청하기
       </button>
 

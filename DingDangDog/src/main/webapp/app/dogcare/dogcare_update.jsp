@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>멍! 케어 일정 등록</title>
+<title>멍! 케어 일정 수정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/dogcare/dogcare_write.css" />
 </head>
 
@@ -18,44 +18,60 @@
 				<div class="main-header-title">멍! 케어</div>
 			</div>
 			<div class="main-content">
-				<div class="content-header">멍! 케어 일정 등록</div>
+				<div class="content-header">멍! 케어 일정 수정</div>
+
 				<!-- form 시작 -->
-				<form action="${pageContext.request.contextPath}/care/write.ca"
+				<form action="${pageContext.request.contextPath}/care/updateOk.ca"
 					method="post">
+
+					<!-- 🔥 hidden (필수) -->
+					<input type="hidden" name="careNumber" value="${care.careNumber}" />
+
 					<div class="dogcare-write-container">
+
 						<!-- 제목 -->
 						<div class="write-title">제목</div>
 						<div class="write-box-container">
+
 							<input class="title-write-box" type="text" name="careTitle"
-								placeholder="제목을 입력하세요" required>
+								value="${care.careTitle}" required>
+
 							<!-- 모집 인원 -->
 							<div class="dogcare-number">
-								<label>모집 인원</label> <input type="number" name="careRecruit"
-									placeholder="모집 인원" min="1" required />
+								<label>모집 인원</label>
+								<input type="number" name="careRecruit"
+									value="${care.careRecruit}" min="1" required />
 							</div>
+
 							<!-- 날짜 -->
 							<div class="dogcare-date">
-								<label>일정</label> <input type="date" name="careDate" required />
+								<label>일정</label>
+								<input type="date" name="careDate"
+									value="${care.careDateStr}" required />
 							</div>
+
 						</div>
+
 						<!-- 내용 -->
 						<div class="write-main-container">
 							<div class="write-main">상세 내용</div>
 							<div class="input-main">
 								<textarea class="input-detail" name="carePost"
-									placeholder="내용을 입력하세요" required></textarea>
+									required>${care.carePost}</textarea>
 							</div>
 						</div>
+
 						<!-- 버튼 -->
 						<div class="detail-footer-container">
 							<div>
-								<button type="submit" class="btn-dogcare-post"
-									onclick="location.href='${pageContext.request.contextPath}/care/list.ca'">멍! 케어 등록</button>
+								<button type="submit" class="btn-dogcare-post">수정 완료</button>
 							</div>
 						</div>
+
 					</div>
 				</form>
 				<!-- form 끝 -->
+
 			</div>
 		</div>
 	</main>

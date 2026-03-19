@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.ddd.app.admin.dto.AdminCareDTO;
 import com.ddd.app.admin.dto.AdminDTO;
 import com.ddd.app.admin.dto.AdminUserDTO;
 import com.ddd.config.MyBatisConfig;
@@ -116,5 +117,43 @@ public class AdminDAO {
 		System.out.println("보호소 승인 업데이트");
 		sqlSession.update("adminUser.updateShelterCertification", userNumber);
 	}
+
+	// 멍! 케어 전체 목록 조회
+    public List<AdminCareDTO> selectCareList(Map<String, Integer> pageMap){
+    	System.out.println("멍케어 전체 리스트 조회");    	
+        return sqlSession.selectList("adminCare.selectCareList", pageMap);
+    }
+    
+    // 멍! 케어 게시글 총 개수
+    public int getCareTotal() {
+        System.out.println("멍! 케어 게시글 총 개수 조회 - getCareTotal 실행");
+        return sqlSession.selectOne("adminCare.getCareTotal");
+    }
+
+    // 멍! 케어 검색
+    public List<AdminCareDTO> searchCareList(Map<String, Object> searchMap){
+        return sqlSession.selectList("adminCare.searchCareList", searchMap);
+    }
+
+    // 멍! 케어 상세정보 조회
+    public AdminCareDTO selectCareDetail(int careNumber){
+        return sqlSession.selectOne("adminCare.selectCareDetail", careNumber);
+    }
+
+    // 멍! 케어 신청자 현황
+    public AdminCareDTO selectApplyStatus(int careNumber){
+        return sqlSession.selectOne("adminCare.selectApplyStatus", careNumber);
+    }
+
+    // 멍! 케어 신청자 목록
+    public List<AdminCareDTO> selectApplyList(int careNumber){
+        return sqlSession.selectList("adminCare.selectApplyList", careNumber);
+    }
+
+    // 멍! 케어 게시글 삭제 (status 변경)
+    public void deleteCare(int careNumber){
+        sqlSession.update("adminCare.deleteCare", careNumber);
+    }
+
 
 }

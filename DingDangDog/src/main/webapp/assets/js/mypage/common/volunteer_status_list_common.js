@@ -1,7 +1,7 @@
 const volunteerData = [
   { id: 21, date: "2026-03-20", title: "주말 산책 봉사 인원 모집", shelter: "행복 보호소" },
   { id: 20, date: "2026-03-19", title: "유기견 목욕 봉사 도와주세요", shelter: "다정 보호소" },
-  { id: 19, date: "2026-03-18", title: "견사 청소 봉사 신청", shelter: "희망 보호소" },
+  /*{ id: 19, date: "2026-03-18", title: "견사 청소 봉사 신청", shelter: "희망 보호소" },
   { id: 18, date: "2026-03-17", title: "사료 배급 봉사 참여", shelter: "행복 보호소" },
   { id: 17, date: "2026-03-16", title: "산책 및 놀이 봉사", shelter: "해피독 보호소" },
   { id: 16, date: "2026-03-15", title: "주말 보호소 정리 봉사", shelter: "다정 보호소" },
@@ -19,7 +19,7 @@ const volunteerData = [
   { id: 4, date: "2026-03-03", title: "사료 정리 및 배분", shelter: "다정 보호소" },
   { id: 3, date: "2026-03-02", title: "주말 봉사 신청", shelter: "행복 보호소" },
   { id: 2, date: "2026-03-01", title: "입양 행사 현장 지원", shelter: "사랑 보호소" },
-  { id: 1, date: "2026-02-28", title: "보호견 돌봄 활동", shelter: "희망 보호소" }
+  { id: 1, date: "2026-02-28", title: "보호견 돌봄 활동", shelter: "희망 보호소" }*/
 ];
 
 

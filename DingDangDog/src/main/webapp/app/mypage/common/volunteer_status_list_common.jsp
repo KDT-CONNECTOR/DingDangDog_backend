@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -5,8 +9,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>멍! 케어 신청확인</title>
-  <link rel="stylesheet" href="./../../../assets/css/mypage/common/volunteer_status_list_common.css" />
-  <script defer src="./../../../assets/js/mypage/common/volunteer_status_list_common.js"></script>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mypage/common/volunteer_status_list_common.css" />
+  <script defer src="${pageContext.request.contextPath}/assets/js/mypage/common/volunteer_status_list_common.js"></script>
 </head>
 
 <body>
@@ -16,13 +20,13 @@
     <div class="container">
       <aside class="sidebar">
         <nav class="side-menu">
-          <a class="btn-side-link" href="./profile_edit_common.html">내 정보 변경</a>
+          <a class="btn-side-link" href="${pageContext.request.contextPath}/profile_edit_common.html">내 정보 변경</a>
           <hr>
-          <a class="btn-side-link" href="./volunteer_status_list_common.html">멍! 케어 신청 확인</a>
+          <a class="btn-side-link" href="${pageContext.request.contextPath}/volunteer_status_list_common.html">멍! 케어 신청 확인</a>
           <hr>
-          <a class="btn-side-link" href="./review_list.html">내가 작성한 멍! 로그 목록</a>
+          <a class="btn-side-link" href="${pageContext.request.contextPath}/review_list.html">내가 작성한 멍! 로그 목록</a>
           <hr>
-          <a class="btn-side-link" href="./support_list_common.html">1 : 1 문의</a>
+          <a class="btn-side-link" href="${pageContext.request.contextPath}/app/mypage/common/support_list_common.jsp">1 : 1 문의</a>
         </nav>
       </aside>
 
@@ -42,7 +46,9 @@
                   <div class="col-cancel">신청 취소</div>
                 </div>
 
+                <a href="#">
                 <div id="volunteerTableBody"></div>
+                </a>
               </div>
 
               <div class="panel-footer">

@@ -1,25 +1,29 @@
 package com.ddd.app.mypage.dto;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-public class mypageScareDTO {
+public class MypageScareDTO {
 //	SELECT
 //    C.CARE_NUMBER,
 //    C.CARE_TITLE,
 //    TO_CHAR(C.CARE_WRITE_DATE, 'YYYY-MM-DD') AS CARE_WRITE_DATE,
 //    NVL(A.APPLY_COUNT, 0) AS APPLY_COUNT,
 //    C.CARE_RECRUIT
-//		FROM DDD_CARE C,
-//     (SELECT CA.CARE_NUMBER,COUNT(*) AS APPLY_COUNT
-//      FROM DDD_CARE_APPLY CA
-//      GROUP BY CA.CARE_NUMBER)A
-//WHERE C.CARE_NUMBER = A.CARE_NUMBER(+)
-//  AND C.USER_NUMBER = 3
+//FROM DDD_CARE C
+//LEFT JOIN (
+//    SELECT 
+//        CA.CARE_NUMBER, 
+//        COUNT(*) AS APPLY_COUNT
+//    FROM DDD_CARE_APPLY CA
+//    GROUP BY CA.CARE_NUMBER
+//) A ON C.CARE_NUMBER = A.CARE_NUMBER
+//WHERE C.USER_NUMBER = 3
 //ORDER BY C.CARE_NUMBER DESC;
 	
 	private int careNumber;
 	private String careTitle;
-	private Date careDate;
+	private LocalDateTime careDate;
 	private int careRecruit;
 	
 	public int getCareNumber() {
@@ -34,10 +38,10 @@ public class mypageScareDTO {
 	public void setCareTitle(String careTitle) {
 		this.careTitle = careTitle;
 	}
-	public Date getCareDate() {
+	public LocalDateTime getCareDate() {
 		return careDate;
 	}
-	public void setCareDate(Date careDate) {
+	public void setCareDate(LocalDateTime careDate) {
 		this.careDate = careDate;
 	}
 	public int getCareRecruit() {
@@ -47,9 +51,17 @@ public class mypageScareDTO {
 		this.careRecruit = careRecruit;
 	}
 	
+	private static final DateTimeFormatter DATE_FORMAT =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    
+    public String getCareDateStr() {
+        if (careDate == null) return "";
+        return careDate.format(DATE_FORMAT);
+    }
+	
 	@Override
 	public String toString() {
-		return "mypageScareDTO [careNumber=" + careNumber + ", careTitle=" + careTitle + ", careDate=" + careDate
+		return "MypageScareDTO [careNumber=" + careNumber + ", careTitle=" + careTitle + ", careDate=" + careDate
 				+ ", careRecruit=" + careRecruit + "]";
 	}
 	

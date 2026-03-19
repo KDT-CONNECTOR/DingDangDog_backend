@@ -1,7 +1,7 @@
 package com.ddd.app.dogmatching.dao;
 
+// ===== 멍! 매칭 DAO =====
 import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 
 import com.ddd.app.dogarchive.dto.ArchiveReadDTO;

@@ -1,14 +1,15 @@
-package com.ddd.app.dogmatching.controller;
+package com.ddd.app.mypage.controller;
 
-// ===== 멍! 매칭 Front =====
+// ===== 마이페이지 매칭 =====
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.ddd.app.Result;
 
-public class MatchingFrontController extends HttpServlet {
+public class MyPageDogMatchingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,26 +35,27 @@ public class MatchingFrontController extends HttpServlet {
 		// ===== 요청별 분기 처리 =====
 		switch (target) {
 
-		// ===== 설문 시작 =====
-		case "/matching/test.matching": // 테스트 시작 페이지 이동
+		// ===== 설문 페이지 이동 =====
+		case "/matching/test.matching":
 			result = new Result();
+
+			// ===== dogmatching.jsp로 이동 =====
 			result.setPath("/app/dogmatching/dogmatching.jsp");
 			result.setRedirect(false);
 			break;
 
-		// ===== 매칭 제출 =====
-		case "/matching/matchingOk.matching": // 설문 저장 로직 실행
-			result = new MatchingOkController().execute(request, response);
+		// ===== MyPageDogMatchingOkController =====
+		case "/matching/matchingOk.matching":
+			// ===== 5건 제한 저장 =====
+			result = new MyPageDogMatchingOkController().execute(request, response);
 			break;
 
-		// ===== 매칭 결과 =====
-		case "/matching/result.matching": // 결과 상세 및 추천 조회
-			result = new MatchingResultController().execute(request, response);
+		// ===== 매칭 결과 상세 보기 =====
+		case "/matching/result.matching":
 			break;
 
-		// ===== 매칭 리스트 =====
-		case "/matching/list.matching": // 내 매칭 기록 목록 조회
-			result = new MatchingListController().execute(request, response);
+		// ===== 매칭 리스트 보기 =====
+		case "/matching/list.matching":
 			break;
 		}
 

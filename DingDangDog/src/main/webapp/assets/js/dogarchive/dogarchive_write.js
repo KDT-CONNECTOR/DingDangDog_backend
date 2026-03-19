@@ -189,7 +189,7 @@ function handleSubmit() {
     independenceScore: scoreIndependence.value,
     barkScore: scoreBark.value,
     groomingScore: scoreGrooming.value,
-    thumbnail: uploadedImages[0]?.src || "",
+    thumbnail: uploadedImages[0] ? uploadedImages[0].src : "",
     content: archiveContentEditor.innerHTML,
     imageCount: uploadedImages.length
   };

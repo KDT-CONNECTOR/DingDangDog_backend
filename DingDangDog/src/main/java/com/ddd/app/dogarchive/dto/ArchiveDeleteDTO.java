@@ -1,6 +1,6 @@
 package com.ddd.app.dogarchive.dto;
 
-// 멍! 카이브 삭제 DTO
+// ===== 멍! 카이브 삭제 DTO ===== 
 public class ArchiveDeleteDTO {
 	/**
 	 * @author 윤철민

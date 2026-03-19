@@ -1,6 +1,7 @@
 package com.ddd.app.dogcare.dto;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class CareDetailDTO {
 
@@ -15,67 +16,99 @@ public class CareDetailDTO {
 	private int careNumber;
 	private String careTitle;
 	private String carePost;
-	private Date careDate;
+	private LocalDateTime careDate;
 	private int careRecruit;
 	private String userNickname;
-	private Date careWriteDate;
+	private LocalDateTime careWriteDate;
 	private int applyNumber;
 	private int userNumber;
+
 	public int getCareNumber() {
 		return careNumber;
 	}
+
 	public void setCareNumber(int careNumber) {
 		this.careNumber = careNumber;
 	}
+
 	public String getCareTitle() {
 		return careTitle;
 	}
+
 	public void setCareTitle(String careTitle) {
 		this.careTitle = careTitle;
 	}
+
 	public String getCarePost() {
 		return carePost;
 	}
+
 	public void setCarePost(String carePost) {
 		this.carePost = carePost;
 	}
-	public Date getCareDate() {
+
+	public LocalDateTime getCareDate() {
 		return careDate;
 	}
-	public void setCareDate(Date careDate) {
+
+	public void setCareDate(LocalDateTime careDate) {
 		this.careDate = careDate;
 	}
+
 	public int getCareRecruit() {
 		return careRecruit;
 	}
+
 	public void setCareRecruit(int careRecruit) {
 		this.careRecruit = careRecruit;
 	}
+
 	public String getUserNickname() {
 		return userNickname;
 	}
+
 	public void setUserNickname(String userNickname) {
 		this.userNickname = userNickname;
 	}
-	public Date getCareWriteDate() {
+
+	public LocalDateTime getCareWriteDate() {
 		return careWriteDate;
 	}
-	public void setCareWriteDate(Date careWriteDate) {
+
+	public void setCareWriteDate(LocalDateTime careWriteDate) {
 		this.careWriteDate = careWriteDate;
 	}
+
 	public int getApplyNumber() {
 		return applyNumber;
 	}
+
 	public void setApplyNumber(int applyNumber) {
 		this.applyNumber = applyNumber;
 	}
+
 	public int getUserNumber() {
 		return userNumber;
 	}
+
 	public void setUserNumber(int userNumber) {
 		this.userNumber = userNumber;
 	}
-	
+
+	private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+	public String getCareDateStr() {
+		if (careDate == null)
+			return "";
+		return careDate.format(DATE_FORMAT);
+	}
+
+	public String getCareWriteDateStr() {
+		if (careWriteDate == null)
+			return "";
+		return careWriteDate.format(DATE_FORMAT);
+	}
+
 	@Override
 	public String toString() {
 		return "CareDetailDTO [careNumber=" + careNumber + ", careTitle=" + careTitle + ", carePost=" + carePost
@@ -83,5 +116,5 @@ public class CareDetailDTO {
 				+ ", careWriteDate=" + careWriteDate + ", applyNumber=" + applyNumber + ", userNumber=" + userNumber
 				+ "]";
 	}
-	
+
 }

@@ -58,11 +58,11 @@
 		<typeAlias type="com.ddd.app.inquiry.dto.InquiryDetailDTO"
 			alias="InquiryDetailDTO" />
 		<typeAlias type="com.ddd.app.inquiry.dto.InquiryWritingDTO"
-			alias="InquiryWritingDTO" /> -->
-		<typeAlias type="com.ddd.app.mypage.dto.mypageCcareDTO"
-			alias="mypageCcareDTO" />
-		<typeAlias type="com.ddd.app.mypage.dto.mypageScareDTO"
-			alias="mypageScareDTO" />
+			alias="InquiryWritingDTO" />  -->
+		<typeAlias type="com.ddd.app.mypage.dto.MypageCcareDTO"
+			alias="MypageCcareDTO" />
+		<typeAlias type="com.ddd.app.mypage.dto.MypageScareDTO"
+			alias="MypageScareDTO" />
 		<typeAlias type="com.ddd.app.mypage.dto.MyPageDogMatchingDTO"
 			alias="MyPageDogMatchingDTO" />
 		<typeAlias type="com.ddd.app.mypage.dto.MypageSInfoDTO"

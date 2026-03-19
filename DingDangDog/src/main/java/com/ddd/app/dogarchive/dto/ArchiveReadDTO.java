@@ -1,6 +1,6 @@
 package com.ddd.app.dogarchive.dto;
 
-// 멍! 카이브 조회 DTO 
+// ===== 멍! 카이브 조회 DTO ===== 
 public class ArchiveReadDTO {
 	/**
 	 * @author 윤철민

@@ -1,6 +1,8 @@
 package com.ddd.app.dogcare.dto;
 
-import java.sql.Date;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class CareDTO {
 //	CREATE TABLE DDD_CARE (
@@ -16,9 +18,9 @@ public class CareDTO {
 	private int userNumber;
 	private String careTitle;
 	private String carePost;
-	private Date careDate;
+	private LocalDateTime careDate;
 	private int careRecruit;
-	private Date careWriteDate;
+	private LocalDateTime careWriteDate;
 	private String careStatus;
 	
 	public int getCareNumber() {
@@ -45,10 +47,10 @@ public class CareDTO {
 	public void setCarePost(String carePost) {
 		this.carePost = carePost;
 	}
-	public Date getCareDate() {
+	public LocalDateTime getCareDate() {
 		return careDate;
 	}
-	public void setCareDate(Date careDate) {
+	public void setCareDate(LocalDateTime careDate) {
 		this.careDate = careDate;
 	}
 	public int getCareRecruit() {
@@ -57,10 +59,10 @@ public class CareDTO {
 	public void setCareRecruit(int careRecruit) {
 		this.careRecruit = careRecruit;
 	}
-	public Date getCareWriteDate() {
+	public LocalDateTime getCareWriteDate() {
 		return careWriteDate;
 	}
-	public void setCareWriteDate(Date careWriteDate) {
+	public void setCareWriteDate(LocalDateTime careWriteDate) {
 		this.careWriteDate = careWriteDate;
 	}
 	public String getCareStatus() {
@@ -69,6 +71,19 @@ public class CareDTO {
 	public void setCareStatus(String careStatus) {
 		this.careStatus = careStatus;
 	}
+	
+    private static final DateTimeFormatter DATE_FORMAT =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    
+    public String getCareDateStr() {
+        if (careDate == null) return "";
+        return careDate.format(DATE_FORMAT);
+    }
+
+    public String getCareWriteDateStr() {
+        if (careWriteDate == null) return "";
+        return careWriteDate.format(DATE_FORMAT);
+    }
 	
 	@Override
 	public String toString() {

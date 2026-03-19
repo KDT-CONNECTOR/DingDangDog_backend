@@ -1,14 +1,16 @@
-package com.ddd.app.dogmatching.controller;
+package com.ddd.app.dogarchive.controller;
 
-// ===== 멍! 매칭 Front =====
+//===== 멍 카이브 Front =====
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.ddd.app.Result;
 
-public class MatchingFrontController extends HttpServlet {
+public class ArchiveFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -28,32 +30,48 @@ public class MatchingFrontController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 
+		// 경로 추출
 		String target = request.getRequestURI().substring(request.getContextPath().length());
 		Result result = null;
 
 		// ===== 요청별 분기 처리 =====
 		switch (target) {
 
-		// ===== 설문 시작 =====
-		case "/matching/test.matching": // 테스트 시작 페이지 이동
+		// ===== 목록 조회 =====
+		case "/archive/list.ar":
+			result = new ArchiveListController().execute(request, response);
+			break;
+
+		// ===== 상세 보기 =====
+		case "/archive/read.ar":
+			result = new ArchiveReadController().execute(request, response);
+			break;
+
+		// ===== archive_write.jsp 페이지 이동 =====
+		case "/archive/write.ar":
 			result = new Result();
-			result.setPath("/app/dogmatching/dogmatching.jsp");
-			result.setRedirect(false);
+			result.setPath("/app/dogarchive/archive_write.jsp");
+			result.setRedirect(false); // JSP로 이동할 땐 주로 forward(false)
 			break;
 
-		// ===== 매칭 제출 =====
-		case "/matching/matchingOk.matching": // 설문 저장 로직 실행
-			result = new MatchingOkController().execute(request, response);
+		// ===== 등록 처리 =====
+		case "/archive/writeOk.ar":
+			result = new ArchiveWriteOkController().execute(request, response);
 			break;
 
-		// ===== 매칭 결과 =====
-		case "/matching/result.matching": // 결과 상세 및 추천 조회
-			result = new MatchingResultController().execute(request, response);
+		// ===== 수정 페이지 이동 =====
+		case "/archive/update.ar":
+			result = new ArchiveReadController().execute(request, response);
 			break;
 
-		// ===== 매칭 리스트 =====
-		case "/matching/list.matching": // 내 매칭 기록 목록 조회
-			result = new MatchingListController().execute(request, response);
+		// ===== 수정 처리 =====
+		case "/archive/updateOk.ar":
+			result = new ArchiveUpdateOkController().execute(request, response);
+			break;
+
+		// ===== 삭제 처리 =====
+		case "/archive/deleteOk.ar":
+			result = new ArchiveDeleteOkController().execute(request, response);
 			break;
 		}
 
