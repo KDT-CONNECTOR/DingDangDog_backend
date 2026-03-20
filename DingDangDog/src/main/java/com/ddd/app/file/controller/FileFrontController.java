@@ -35,6 +35,14 @@ public class FileFrontController extends HttpServlet {
 
 		Result result = null;
 
+		switch (target) {
+		case "/file/fileDownload.fi":
+			System.out.println("파일 다운로드 요청");
+			result = new FileDownloadController().execute(request, response);
+			System.out.println("파일 다운로드 완료");
+			break;
+		}
+
 		if (result != null && result.getPath() != null) {
 			if (result.isRedirect()) {
 				response.sendRedirect(result.getPath());

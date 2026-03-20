@@ -49,8 +49,16 @@
 				<div class="admin-detail-row">
 					<div class="admin-detail-title">첨부파일</div>
 					<div class="admin-detail-info">
-						<button class="download-btn">download</button>
-						파일관련 추가예정
+						<c:choose>
+							<c:when test="${not empty file}">
+								<a
+									href="${pageContext.request.contextPath}/file/fileDownload.fi?userNumber=${user.userNumber}"
+									class="download-link"> ${file.fileOriginalName} [다운로드] </a>
+							</c:when>
+							<c:otherwise>
+                					파일이 없습니다
+            					</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>
