@@ -106,6 +106,11 @@ public class MypageFrontController extends HttpServlet {
 			result = new WithdrawOkController().execute(request, response);
 			System.out.println("마이페이지 탈퇴처리 완료");
 			break;
+		case "/mypage/profileSFileOk.mp":
+			System.out.println("마이페이지 파일 업로드 처리 요청");
+			result = new profileSFileOKController().execute(request, response);
+			System.out.println("마이페이지 파일 업로드 처리 완료");
+			break; 
 		}
 
 		if (result != null && result.getPath() != null) {
