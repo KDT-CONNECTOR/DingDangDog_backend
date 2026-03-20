@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-  const rows = Array.from(document.querySelectorAll(".admin-dogarchaive-list-row"));
+  const rows = Array.from(document.querySelectorAll(".admin-dogarchive-list-row"));
 
   const rowsPerPage = 15; // 한 페이지 게시글
   const pageCount = 5; // 페이지 버튼 수
@@ -15,18 +15,45 @@ document.addEventListener("DOMContentLoaded", function () {
   const searchBtn = document.querySelector(".btn-search");
   const searchInput = document.querySelector(".search-input");
   const searchSelect = document.querySelector(".search-select");
+  const archiveTableBody = document.getElementById("archiveTableBody");
 
 
   function renderPage(page) {
 
     rows.forEach(row => row.style.display = "none");
-
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
+	const currentData = filteredData.slice(start, end);
 
-    filteredRows.slice(start, end).forEach(row => {
-      row.style.display = "grid";
-    });
+	archiveTableBody.innerHTML = "";
+
+	if (currentData.length === 0) {
+	  archiveTableBody.innerHTML = `<div class="admin-dogarchive-empty">조회된 게시글이 없습니다.</div>`;
+	  return;
+	}
+
+	currentData.forEach((archive) => {
+	  const row = document.createElement("div");
+	  row.classList.add("admin-dogarchive-list-row");
+	  row.style.cursor = "pointer";
+
+	  row.innerHTML = `
+	  <div class="dogarchive-number">archive</div>
+	  <div class="dogarchive-name">이름</div>
+	  <div class="dogarchive-age">나이</div>
+	  <div class="dogarchive-weight">몸무게</div>
+	  <div class="dogarchive-type">견종</div>
+	  <div class="dogarchive-shelter">등록 보호소</div>
+	  <div class="dogarchive-date">보호 날짜</div>
+	  `;
+
+	  row.addEventListener("click", () => {
+	    location.href = `${contextPath}/admin/adminLogDetailOk.ad?logNumber=${archive.id}`;//멍카이브 상세 페이지 주소로 바꿔야함
+	  });
+
+	  archiveTableBody.appendChild(row);
+	});
+
 
   }
 
@@ -109,8 +136,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     filteredRows = rows.filter(row => {
 
-      const title = row.querySelector(".dogarchaive-name").textContent;
-      const shelter = row.querySelector(".dogarchaive-shelter").textContent;
+      const title = row.querySelector(".dogarchive-name").textContent;
+      const shelter = row.querySelector(".dogarchive-shelter").textContent;
 
       if (type === "이름") return shelter.includes(keyword);
       if (type === "견종") return shelter.includes(keyword);

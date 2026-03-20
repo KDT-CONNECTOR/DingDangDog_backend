@@ -147,6 +147,27 @@ public class AdminFrontController extends HttpServlet {
 			System.out.println("멍! 로그 댓글 삭제 완료");
 			break;
 			
+		case "/admin/adminArchiveDetailOk.ad":
+			System.out.println("멍! 카이브 상세 요청");
+			result = new AdminArchiveDetailOkController().execute(request, response);
+			System.out.println("멍! 카이브 상세 완료");
+			break;
+		
+		case "/admin/adminArchiveListOk.ad":
+			System.out.println("멍! 카이브 리스트 요청");
+			result = new AdminArchiveListOkController().execute(request, response);
+			System.out.println("멍! 카이브 리스트 완료");
+			break;
+			
+		case "/admin/adminArchiveDeleteOk.ad":
+			System.out.println("멍! 카이브 게시물 삭제 요청");
+			result = new AdminArchiveDeleteOkController().execute(request, response);
+			System.out.println("멍! 카이브 게시물 삭제 완료");
+			break;
+			
+		
+		
+			
 		}
 
 		if (result != null && result.getPath() != null) {
