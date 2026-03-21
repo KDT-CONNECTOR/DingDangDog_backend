@@ -24,9 +24,20 @@ public class AdminUserDTO {
 	private String shelterBusinessNumber;
 	private String shelterCertification;
 	private int commonReportCount;
+	private String fileSystemName;
+	private String fileOriginalName;
+	private String ShelterAddressDetail;
 
 	public int getUserNumber() {
 		return userNumber;
+	}
+
+	public String getShelterAddressDetail() {
+		return ShelterAddressDetail;
+	}
+
+	public void setShelterAddressDetail(String shelterAddressDetail) {
+		ShelterAddressDetail = shelterAddressDetail;
 	}
 
 	public void setUserNumber(int userNumber) {
@@ -153,6 +164,22 @@ public class AdminUserDTO {
 		this.commonReportCount = commonReportCount;
 	}
 
+	public String getFileSystemName() {
+		return fileSystemName;
+	}
+
+	public void setFileSystemName(String fileSystemName) {
+		this.fileSystemName = fileSystemName;
+	}
+
+	public String getFileOriginalName() {
+		return fileOriginalName;
+	}
+
+	public void setFileOriginalName(String fileOriginalName) {
+		this.fileOriginalName = fileOriginalName;
+	}
+
 	@Override
 	public String toString() {
 		return "AdminUserDTO [userNumber=" + userNumber + ", userType=" + userType + ", userId=" + userId
@@ -160,7 +187,9 @@ public class AdminUserDTO {
 				+ ", userGender=" + userGender + ", userBirth=" + userBirth + ", userPhone=" + userPhone
 				+ ", userEmail=" + userEmail + ", userStatus=" + userStatus + ", shelterName=" + shelterName
 				+ ", shelterAddress=" + shelterAddress + ", shelterBusinessNumber=" + shelterBusinessNumber
-				+ ", shelterCertification=" + shelterCertification + ", commonReportCount=" + commonReportCount + "]";
+				+ ", shelterCertification=" + shelterCertification + ", commonReportCount=" + commonReportCount
+				+ ", fileSystemName=" + fileSystemName + ", fileOriginalName=" + fileOriginalName
+				+ ", ShelterAddressDetail=" + ShelterAddressDetail + "]";
 	}
 
 }

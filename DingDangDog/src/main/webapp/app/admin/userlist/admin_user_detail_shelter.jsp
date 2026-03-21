@@ -40,20 +40,22 @@
 				</div>
 				<div class="admin-detail-row">
 					<div class="admin-detail-title">주소</div>
-					<div class="admin-detail-info">${user.shelterAddress}</div>
+					<div class="admin-detail-info address-info">${user.shelterAddress}
+						${user.shelterAddressDetail }</div>
 				</div>
 				<div class="admin-detail-row">
 					<div class="admin-detail-title">사업자등록번호</div>
 					<div class="admin-detail-info">${user.shelterBusinessNumber}</div>
 				</div>
-				<div class="admin-detail-row">
+				<div class="admin-detail-row ">
 					<div class="admin-detail-title">첨부파일</div>
-					<div class="admin-detail-info">
+					<div class="admin-detail-info file-info">
 						<c:choose>
-							<c:when test="${not empty file}">
+							<c:when test="${not empty user.fileOriginalName}">
+								<p>${user.fileOriginalName}</p>
 								<a
 									href="${pageContext.request.contextPath}/file/fileDownload.fi?userNumber=${user.userNumber}"
-									class="download-link"> ${file.fileOriginalName} [다운로드] </a>
+									id="download-link" class="download-btn"> 다운로드 </a>
 							</c:when>
 							<c:otherwise>
                 					파일이 없습니다

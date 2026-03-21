@@ -185,20 +185,25 @@ WHERE rownum <= 5
 	<select id="selectShelterDetail" parameterType="int"
 		resultType="AdminUserDTO">
 		<!-- 파일 추가 필요 -->
-		<!-- SELECT u.user_id, s.shelter_name, u.user_nickname, s.shelter_address, 
-			s.shelter_business_number, s.shelter_certification, f.file_name FROM ddd_user 
-			u JOIN ddd_user_shelter s ON u.user_number = s.user_number LEFT JOIN ddd_file 
-			f ON u.user_number = f.user_number WHERE u.user_number = #{userNumber} -->
 		SELECT
 		u.user_number, u.user_id, s.shelter_name, u.user_nickname,
-		s.shelter_address,
-		s.shelter_business_number, s.shelter_certification
-		FROM ddd_user u
-		JOIN
-		ddd_user_shelter s ON u.user_number = s.user_number
+		s.shelter_address, s.shelter_address_detail,
+		s.shelter_business_number, s.shelter_certification,
+		f.file_system_name
+		, f.file_original_name
+		FROM
+		ddd_user u
+		JOIN ddd_user_shelter s ON
+		u.user_number = s.user_number
+		LEFT JOIN ddd_file f ON
+		u.user_number =
+		f.user_number
 		WHERE
-		u.user_number
-		= #{userNumber}
+		u.user_number = #{userNumber}
+		<!-- SELECT u.user_number, u.user_id, s.shelter_name, u.user_nickname, 
+			s.shelter_address, s.shelter_business_number, s.shelter_certification FROM 
+			ddd_user u JOIN ddd_user_shelter s ON u.user_number = s.user_number WHERE 
+			u.user_number = #{userNumber} -->
 	</select>
 
 	<!-- 보호소회원 인증 업데이트 -->

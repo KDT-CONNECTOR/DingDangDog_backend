@@ -38,6 +38,7 @@ public class ProfileCEditOkController implements Execute {
 		}
 
 		mypageDAO.updateMyPageInfo(updateMap);
+		session.setAttribute("userNickname", userNickname);
 		System.out.println("정보수정 완료");
 
 		result.setPath(request.getContextPath() + "/mypage/mypageMain.mp");
