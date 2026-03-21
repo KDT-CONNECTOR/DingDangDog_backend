@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ddd.app.Execute;
 import com.ddd.app.Result;
@@ -24,6 +25,11 @@ public class CareListController implements Execute {
          CareDAO careDAO = new CareDAO();
          Result result = new Result();
 
+      // 세션에서 userNumber 가져오기
+         HttpSession session = request.getSession();
+         int userNumber = (Integer) session.getAttribute("userNumber");  // 세션에서 userNumber 가져오기
+         System.out.println("접속한 userNumber : " + userNumber);
+         
       // 페이징 처리
          String temp = request.getParameter("page");
          int page = (temp == null) ? 1 : Integer.valueOf(temp); // 페이지 번호 기본값을 1로 설정하겠다
