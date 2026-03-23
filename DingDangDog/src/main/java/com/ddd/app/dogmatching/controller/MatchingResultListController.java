@@ -19,25 +19,27 @@ public class MatchingResultListController implements Execute {
 	@Override
 	public Result execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		MatchingResultDAO dao = new MatchingResultDAO();
-
-		// 객체
-		Result result = new Result();
-		HttpSession session = request.getSession();
-
-		// ===== 로그인한 userNumber 세션에서 확인 =====
-		int userNumber = (int) session.getAttribute("userNumber");
-
-		// ===== 매칭 리스트 조회 =====
-		List<MatchingResultDTO> myResults = dao.selectMyResults(userNumber);
-
-		// ===== 데이터 저장 =====
-		request.setAttribute("myResults", myResults);
-
-		// ===== 리스트 페이지로 이동 =====
-		result.setPath("/app/dogmatching/dogmatching_List.jsp");
-		result.setRedirect(false);
-
-		return result;
+//		MatchingResultDAO dao = new MatchingResultDAO();
+//
+//		// 객체
+//		Result result = new Result();
+//		HttpSession session = request.getSession();
+//
+//		// ===== 로그인한 userNumber 세션에서 확인 =====
+//		int userNumber = (int) session.getAttribute("userNumber");
+//
+//		// ===== 매칭 리스트 조회 =====
+//		List<MatchingResultDTO> myResults = dao.selectMyResults(userNumber);
+//
+//		// ===== 데이터 저장 =====
+//		request.setAttribute("myResults", myResults);
+//
+//		// ===== 리스트 페이지로 이동 =====
+//		result.setPath("/app/dogmatching/dogmatching_List.jsp");
+//		result.setRedirect(false);
+//
+//		return result;
+		return null;
+		//============용도 모르겠으므로 삭제 보류
 	}
 }

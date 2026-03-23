@@ -2,40 +2,49 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="matching">
 
-	<insert id="insertResult" parameterType="MatchingResultDTO">
-		INSERT INTO
-		DDD_MATCH_RESULT (
-		RESULT_NUMBER, USER_NUMBER,
-		DOG_ACTIVITY, DOG_SOCIALITY, DOG_INDEPENDENCE, DOG_BARKING, DOG_GROOMING,
-		RESULT_CREATED_DATE
+	<insert id="insertResult" parameterType="com.ddd.app.dogmatching.dto.MatchingResultDTO">
+		INSERT INTO DDD_MATCH_RESULT (
+			RESULT_NUMBER,
+			USER_NUMBER,
+			DOG_ACTIVITY,
+			DOG_SOCIALITY,
+			DOG_INDEPENDENCE,
+			DOG_BARKING,
+			DOG_GROOMING,
+			RESULT_CREATED_DATE
 		) VALUES (
-		SEQ_MATCH_RESULT.NEXTVAL, #{userNumber},
-		#{dogActivity}, #{dogSociality}, #{dogIndependence}, #{dogBarking}, #{dogGrooming},
-		SYSDATE
+			#{resultNumber},
+			#{userNumber},
+			#{dogActivity},
+			#{dogSociality},
+			#{dogIndependence},
+			#{dogBarking},
+			#{dogGrooming},
+			SYSDATE
 		)
 	</insert>
 
-	<select id="selectTop8" parameterType="int"
-		resultType="ArchiveReadDTO">
-		SELECT * FROM (
+	<select id="selectDogCardByDogNumber" parameterType="int" resultType="ArchiveListDTO">
 		SELECT
-		d.DOG_NUMBER, d.DOG_NAME, d.DOG_BREED, d.DOG_IMG_PATH,
-		/* ABS(사용자 점수 - 유기견 점수)의 합계가 낮을수록 나랑 잘 맞는 강아지 */
-		(ABS(m.DOG_ACTIVITY - d.DOG_ACTIVITY) +
-		ABS(m.DOG_SOCIALITY - d.DOG_SOCIALITY) +
-		ABS(m.DOG_INDEPENDENCE - d.DOG_INDEPENDENCE) +
-		ABS(m.DOG_BARKING - d.DOG_BARKING) +
-		ABS(m.DOG_GROOMING - d.DOG_GROOMING)) AS DISTANCE
-		FROM TBL_DOG_ARCHIVE d, DDD_MATCH_RESULT m
-		WHERE m.USER_NUMBER = #{userNumber}
-		/* 사용자가 방금 진행한 가장 최근 설문 결과를 기준으로 비교 */
-		AND m.RESULT_NUMBER = (
-		SELECT MAX(RESULT_NUMBER) FROM DDD_MATCH_RESULT WHERE USER_NUMBER =
-		#{userNumber}
-		)
-		ORDER BY DISTANCE ASC, d.DOG_NUMBER DESC
-		)
-		WHERE ROWNUM &lt;= 8
+			a.dog_number,
+			a.dog_name,
+			a.dog_breed,
+			a.dog_archive_date,
+			s.shelter_name,
+			(
+				SELECT ai.archive_img_path
+				FROM ddd_archive_img ai
+				WHERE ai.dog_number = a.dog_number
+				  AND ai.archive_img_number = (
+						SELECT MIN(ai2.archive_img_number)
+						FROM ddd_archive_img ai2
+						WHERE ai2.dog_number = a.dog_number
+				  )
+			) AS archive_img_path
+		FROM ddd_archive a
+		LEFT JOIN ddd_user_shelter s
+			ON a.user_number = s.user_number
+		WHERE a.dog_number = #{dogNumber}
 	</select>
 
 	<select id="countSavedResults" parameterType="int"
@@ -45,16 +54,20 @@
 	</select>
 
 	<delete id="deleteOldestResult" parameterType="int">
-		DELETE FROM
-		DDD_MATCH_RESULT
+		DELETE FROM DDD_MATCH_RESULT
 		WHERE RESULT_NUMBER = (
-		SELECT MIN(RESULT_NUMBER) FROM DDD_MATCH_RESULT WHERE USER_NUMBER =
-		#{userNumber}
+			SELECT RESULT_NUMBER
+			FROM (
+				SELECT RESULT_NUMBER
+				FROM DDD_MATCH_RESULT
+				WHERE USER_NUMBER = #{userNumber}
+				ORDER BY RESULT_CREATED_DATE ASC
+			)
+			WHERE ROWNUM = 1
 		)
 	</delete>
-
 	<select id="selectMyResults" parameterType="int"
-		resultType="MatchingResultDTO">
+		resultType="com.ddd.app.dogmatching.dto.MatchingResultDTO">
 		SELECT
 		RESULT_NUMBER, USER_NUMBER,
 		DOG_ACTIVITY, DOG_SOCIALITY, DOG_INDEPENDENCE, DOG_BARKING, DOG_GROOMING,
@@ -66,17 +79,61 @@
 		RESULT_NUMBER DESC
 	</select>
 	
-	<select id="selectAllDogScore" resultType="MatchingResultDTO">
+	<select id="selectAllDogScore" resultType="com.ddd.app.dogmatching.dto.ArchiveScoreDTO">
 		SELECT
-	   	DOG_NUMBER,
-	   	DOG_ACTIVITY,
-	  	DOG_SOCIALITY,
-	  	DOG_INDEPENDENCE,
-	  	DOG_BARKING,
-	  	DOG_GROMMING
-	  	FROM DDD_ARCHIVE_SCORE
+			dog_number,
+			dog_activity,
+			dog_sociality,
+			dog_independence,
+			dog_barking,
+			dog_grooming
+		FROM ddd_archive_score
 	</select>
 	
+	
+	<!-- 새 result_number 미리 가져오기 -->
+	<select id="getNextResultNumber" resultType="int">
+		SELECT SEQ_MATCH_RESULT.NEXTVAL
+		FROM DUAL
+	</select>
+	
+	<!-- 매칭 결과에 추천된 강아지 저장 -->
+	<insert id="insertResultDog" parameterType="com.ddd.app.dogmatching.dto.MatchingResultDTO">
+		INSERT INTO DDD_MATCH_RESULT_DOG (
+			RESULT_DOG_NUMBER,
+			RESULT_NUMBER,
+			DOG_NUMBER,
+			RESULT_RANK
+		) VALUES (
+			SEQ_MATCH_RESULT_DOG.NEXTVAL,
+			#{resultNumber},
+			#{dogNumber},
+			#{resultRank}
+		)
+	</insert>
+	
+	<!-- 저장된 결과에 속한 강아지 번호들 조회 -->
+	<select id="selectResultDogNumbers" parameterType="int" resultType="int">
+		SELECT DOG_NUMBER
+		FROM DDD_MATCH_RESULT_DOG
+		WHERE RESULT_NUMBER = #{resultNumber}
+		ORDER BY RESULT_RANK ASC
+	</select>
+	
+	<!-- 저장된 매칭 결과 1건 조회 -->
+	<select id="selectResultByResultNumber" parameterType="int" resultType="com.ddd.app.dogmatching.dto.MatchingResultDTO">
+		SELECT
+			RESULT_NUMBER,
+			USER_NUMBER,
+			DOG_ACTIVITY,
+			DOG_SOCIALITY,
+			DOG_INDEPENDENCE,
+			DOG_BARKING,
+			DOG_GROOMING,
+			RESULT_CREATED_DATE
+		FROM DDD_MATCH_RESULT
+		WHERE RESULT_NUMBER = #{resultNumber}
+	</select>
 	
 
 </mapper>

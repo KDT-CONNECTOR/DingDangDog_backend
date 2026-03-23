@@ -31,6 +31,7 @@ public class MatchingResultFrontController extends HttpServlet {
 		String target = request.getRequestURI().substring(request.getContextPath().length());
 		Result result = null;
 
+//		request.getSession().setAttribute("userNumber", 10001);
 		// ===== 요청별 분기 처리 =====
 		switch (target) {
 
@@ -42,18 +43,18 @@ public class MatchingResultFrontController extends HttpServlet {
 			break;
 
 		// ===== 매칭 제출 =====
-		case "/matching/matchingOk.ma": // 설문 저장 로직 실행
+		case "/matching/matchingOk.ma": // 설문 저장 로직 실행 및 결과 페이지로 이동
 			result = new MatchingResultOkController().execute(request, response);
 			break;
 
-		// ===== 매칭 결과 =====
-		case "/matching/result.ma": // 결과 상세 및 추천 조회
-			result = new MatchingResultController().execute(request, response);
+		// 결과 저장
+		case "/matching/save.ma":
+			result = new MatchingResultSaveController().execute(request, response);
 			break;
 
-		// ===== 매칭 리스트 =====
-		case "/matching/list.ma": // 내 매칭 기록 목록 조회
-			result = new MatchingResultListController().execute(request, response);
+		// 저장된 결과 다시보기
+		case "/matching/result.ma":
+			result = new MatchingResultController().execute(request, response);
 			break;
 		}
 
@@ -65,5 +66,6 @@ public class MatchingResultFrontController extends HttpServlet {
 				request.getRequestDispatcher(result.getPath()).forward(request, response);
 			}
 		}
-	}
 }
+}
+	

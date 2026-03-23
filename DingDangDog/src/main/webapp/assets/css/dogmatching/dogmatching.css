@@ -131,3 +131,10 @@ footer {
   border: none;
   margin-bottom: 50px;
 }
+
+
+.survey-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}

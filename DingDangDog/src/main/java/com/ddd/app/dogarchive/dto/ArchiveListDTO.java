@@ -1,5 +1,6 @@
 package com.ddd.app.dogarchive.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -25,6 +26,8 @@ public class ArchiveListDTO {
 	private String shelterName;
 	private LocalDateTime dogSafeDate;
 	private String archiveImgPath;
+	private LocalDate dogArchiveDate;
+
 
 	// ===== Getter,Setter =====
 	public int getDogNumber() {
@@ -76,13 +79,22 @@ public class ArchiveListDTO {
 	public void setArchiveImgPath(String archiveImgPath) {
 		this.archiveImgPath = archiveImgPath;
 	}
+	
+	public LocalDate getDogArchiveDate() {
+		return dogArchiveDate;
+	}
+
+	public void setDogArchiveDate(LocalDate dogArchiveDate) {
+		this.dogArchiveDate = dogArchiveDate;
+	}
 
 	// ===== Overried =====
 	@Override
 	public String toString() {
 		return "ArchiveListDTO [dogNumber=" + dogNumber + ", dogName=" + dogName + ", dogBreed=" + dogBreed
 				+ ", shelterName=" + shelterName + ", dogSafeDate=" + dogSafeDate + ", archiveImgPath=" + archiveImgPath
-				+ "]";
+				+ ", dogArchiveDate=" + dogArchiveDate + "]";
 	}
+	
 
 }
