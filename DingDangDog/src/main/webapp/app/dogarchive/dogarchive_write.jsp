@@ -8,6 +8,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/header.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/footer.css" />
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/dogarchive/dogarchive_write.css" />
 <script defer
 	src="${pageContext.request.contextPath}/assets/js/dogarchive/dogarchive_write.js"></script>
@@ -15,9 +19,15 @@
 </head>
 
 <body>
-	<!-- header -->
-	<div id="header-container"></div>
-
+	<!-- 유저 번호 확인 존재시 로그인 헤더 -->
+	<c:choose>
+		<c:when test="${not empty sessionScope.userNumber}">
+			<jsp:include page="/app/header_login.jsp" />
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="/app/header_logout.jsp" />
+		</c:otherwise>
+	</c:choose>
 
 	<main class="archive-write">
 		<div class="container">
@@ -52,7 +62,7 @@
 
 							<div class="info-item">
 								<label for="dogGender">성별 :</label> <input type="text"
-									id="dogGender" />
+									id="dogGender" placeholder="M 또는 F를 입력해주세요" class="info-input" />
 							</div>
 
 							<div class="info-item">
@@ -162,7 +172,7 @@
 		</div>
 	</main>
 	<!-- footer -->
-	<div id="footer-container"></div>
+	<jsp:include page="/app/footer.jsp" />
 	<!-- js -->
 	<script src="/assets/js/header-footer.js"></script>
 </body>
