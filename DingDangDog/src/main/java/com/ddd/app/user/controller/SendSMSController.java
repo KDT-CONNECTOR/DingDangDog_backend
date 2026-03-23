@@ -19,7 +19,7 @@ public class SendSMSController implements Execute {
 	@Override
 	public Result execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String phoneNumber = request.getParameter("realPhoneNumbekr");
+		String phoneNumber = request.getParameter("realPhoneNumber");
 		SmsService smsService = new SmsService();
 		Result result = new Result();
 

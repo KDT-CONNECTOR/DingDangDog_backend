@@ -15,7 +15,7 @@ import com.ddd.app.dogmatching.controller.MatchingResultListController;
 /**
  * Servlet implementation class mypageController
  */
-@WebServlet("/mypageController")
+
 public class MypageFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
