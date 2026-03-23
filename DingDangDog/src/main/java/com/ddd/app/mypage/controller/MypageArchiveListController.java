@@ -24,7 +24,7 @@ public class MypageArchiveListController implements Execute {
         HttpSession session = request.getSession();
         Result result = new Result();
         
-        // 1. 세션에서 유저 번호 가져오기 (로그인 체크)
+        // 세션에서 유저 번호 가져오기 (로그인 체크)
         Integer userNumber = (Integer) session.getAttribute("userNumber");
         
         if (userNumber == null) {
@@ -34,14 +34,14 @@ public class MypageArchiveListController implements Execute {
             return result;
         }
 
-        // 2. DAO 호출하여 리스트 데이터 가져오기
+        // DAO 호출하여 리스트 데이터 가져오기
         MypageArchiveDAO archiveDAO = new MypageArchiveDAO();
         List<MypageArchiveDTO> archiveList = archiveDAO.selectMyArchive(userNumber);
 
-        // 3. JSP로 보낼 데이터 세팅
+        // JSP로 보낼 데이터 세팅
         request.setAttribute("archiveList", archiveList);
 
-        // 4. 리스트 형식의 전용 JSP로 이동 설정
+        // 리스트 형식의 전용 JSP로 이동 설정
         result.setPath("/app/mypage/shelter/archive_list.jsp");
         result.setRedirect(false); // forward
         
