@@ -62,6 +62,9 @@ public class MatchingResultSaveController implements Execute {
 		int resultNumber = dao.getNextResultNumber();
 		matchingResultDTO.setResultNumber(resultNumber);
 
+		System.out.println("저장 직전 resultNumber = " + resultNumber);
+		System.out.println("저장 직전 matchingResultDTO = " + matchingResultDTO);
+		
 		// ===== 헤더 저장 =====
 		dao.insertResult(matchingResultDTO);
 

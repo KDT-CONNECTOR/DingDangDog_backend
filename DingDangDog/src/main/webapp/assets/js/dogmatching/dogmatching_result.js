@@ -47,7 +47,7 @@ if (saveBtn) {
       location.href = `${contextPath}/user/login.us`;
       return;
     }
-
+	alert("저장 되었습니다");
     location.href = `${contextPath}/matching/save.ma`;
   });
 }
