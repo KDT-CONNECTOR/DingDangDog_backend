@@ -3,14 +3,13 @@ package com.ddd.app.mypage.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ddd.app.Result;
-import com.ddd.app.dogarchive.controller.ArchiveListController;
-//import com.ddd.app.dogmatching.controller.MatchingResultListController;
+
 
 /**
  * Servlet implementation class mypageController
@@ -59,7 +58,7 @@ public class MypageFrontController extends HttpServlet {
 		Result result = null;
 
 		switch (target) {
-			
+
 		case "/mypage/checkPw.mp":
 			System.out.println("비밀번호 검사 페이지 요청");
 			result = new Result();
@@ -132,27 +131,27 @@ public class MypageFrontController extends HttpServlet {
 //			break;
 		case "/mypage/archiveList.mp":
 			System.out.println("보호소회원 내가 등록한 멍! 카이브 목록 페이지 이동 요청");
-			result = new ArchiveListController().execute(request, response);
+			result = new MypageArchiveListController().execute(request, response);
 			System.out.println("보호소회원 내가 등록한 멍! 카이브 목록 페이지 이동 완료");
 			break;
 		case "/mypage/mypageMain.mp":
-		    System.out.println("마이페이지 이동 요청");
-		    String userType = (String)request.getSession().getAttribute("userType");
-		    
-		    if("C".equals(userType)) {
-		        // 일반회원용 컨트롤러
-		        result = new MypageCMainController().execute(request, response);
-		    } else if("S".equals(userType)) {
-		        // 보호소회원용 컨트롤러
-		        result = new MypageSMainController().execute(request, response);
-		    } else {
-		        // 로그인 정보가 없거나 타입이 이상할 경우 로그인 페이지로
-		        result = new Result();
-		        result.setPath(request.getContextPath() + "/member/login.me");
-		        result.setRedirect(true);
-		    }
-		    System.out.println("마이페이지 이동 처리 완료");
-		    break;
+			System.out.println("마이페이지 이동 요청");
+			String userType = (String) request.getSession().getAttribute("userType");
+
+			if ("C".equals(userType)) {
+				// 일반회원용 컨트롤러
+				result = new MypageCMainController().execute(request, response);
+			} else if ("S".equals(userType)) {
+				// 보호소회원용 컨트롤러
+				result = new MypageSMainController().execute(request, response);
+			} else {
+				// 로그인 정보가 없거나 타입이 이상할 경우 로그인 페이지로
+				result = new Result();
+				result.setPath(request.getContextPath() + "/member/login.me");
+				result.setRedirect(true);
+			}
+			System.out.println("마이페이지 이동 처리 완료");
+			break;
 
 		}
 

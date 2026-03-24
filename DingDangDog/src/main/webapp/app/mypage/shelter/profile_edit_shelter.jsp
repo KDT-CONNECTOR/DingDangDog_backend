@@ -44,20 +44,8 @@
 	</div>
 	<main class="profile-edit">
 		<div class="container">
-			<aside class="sidebar">
-				<nav class="side-menu">
-					<a class="btn-side-link" href="./profile_edit_shelter.html">보호소
-						정보 변경</a>
-					<hr>
-					<a class="btn-side-link" href="./care_list.html">멍! 케어 목록 및 현황</a>
-					<hr>
-					<a class="btn-side-link" href="./archive_list.html">멍! 카이브 등록
-						정보</a>
-					<hr>
-					<a class="btn-side-link" href="./support_list_shelter.html">1 :
-						1 문의</a>
-				</nav>
-			</aside>
+			<!-- 사이드바 -->
+			<jsp:include page="/app/mypage/sidebar.jsp" />
 
 			<section class="content">
 				<div class="content-box">
@@ -150,9 +138,8 @@
 										<div class="edit-inline">
 											<div class="edit-control">
 												<input type="text" id="verify-code" class="edit-input"
-													value="">
-												<p id="verify-message" class="guide-text info-text">번호가
-													일치 합니다.</p>
+													name="verificationCode" value="">
+												<p id="verify-message" class="guide-text info-text"></p>
 											</div>
 											<button type="button" id="verify-code-btn" class="action-btn">인증
 												번호 확인</button>
@@ -172,7 +159,7 @@
 										<div class="edit-label">보호소 인증</div>
 										<div class="file-upload-wrap">
 											<input type="file" id="shelter-file-input" class="file-input"
-											name="shelterFile"	accept=".pdf,.jpg,.jpeg,.png">
+												name="shelterFile" accept=".pdf,.jpg,.jpeg,.png">
 											<button type="submit" id="shelter-file-btn"
 												class="action-btn">파일등록</button>
 										</div>
