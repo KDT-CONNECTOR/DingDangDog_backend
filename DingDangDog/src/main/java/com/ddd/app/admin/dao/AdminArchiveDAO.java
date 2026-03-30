@@ -17,6 +17,11 @@ public class AdminArchiveDAO {
 		sqlSession = MyBatisConfig.getSqlSessionFactory().openSession(true);
 	}
 	
+	//대시보드용 리스트
+	public List<AdminArchiveDTO> getDashboardArchiveList() {
+		System.out.println("대시보드용 멍카이브 리스트 호출");
+		return sqlSession.selectList("adminArchive.getDashboardArchiveList");
+	}
 	
 	
 	// 멍카이브 검색

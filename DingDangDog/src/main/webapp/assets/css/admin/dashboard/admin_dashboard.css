@@ -152,19 +152,19 @@
 }
 
 .dogcare>.dogcare-title {
-	flex: 3;
+	flex: 2.5;
 }
 
-.dogcare>.dogcare-id {
-	flex: 1.5;
+.dogcare>.dogcare-date {
+	flex: 1;
 }
 
 .dogcare>.dogcare-nickname {
 	flex: 0.8;
 }
 
-.dogcare>.dogcare-date {
-	flex: 1.5;
+.dogcare>.dogcare-wrtie-date {
+	flex: 1;
 }
 /* 멍!로그 */
 .doglog>.doglog-number {

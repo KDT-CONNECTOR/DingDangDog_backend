@@ -2,6 +2,19 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminArchive">
 
+	<!-- 대시보드용 멍카이브 조회 -->
+	<select id="getDashboardArchiveList" resultType="AdminArchiveDTO"> 
+	<![CDATA[ 
+	SELECT * FROM
+	(SELECT a.dog_number, a.dog_name, a.dog_age,
+			a.dog_breed, s.shelter_name, a.dog_safe_date
+	FROM ddd_archive a JOIN ddd_user_shelter s 
+	ON a.user_number = s.user_number
+	ORDER BY a.dog_safe_date ASC)
+	WHERE rownum <= 5
+	]]>
+	</select>
+
 	<!-- 멍! 카이브 전체 목록 검색 조회 -->
 	<select id="searchArchiveList" parameterType="map" resultType="AdminArchiveDTO">
 	    SELECT a.dog_number, a.dog_name, a.dog_age, a.dog_weight,

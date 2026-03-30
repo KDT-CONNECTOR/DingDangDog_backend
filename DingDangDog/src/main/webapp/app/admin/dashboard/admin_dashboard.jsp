@@ -99,7 +99,7 @@
 						<article class="dashboard-box admin-box-shadow">
 							<div class="box-header">
 								<span class="box-title">멍! 카이브 목록</span> <a
-									href="${pageContext.request.contextPath}/admin/"
+									href="${pageContext.request.contextPath}/admin/adminArchiveListOk.ad"
 									class="link-btn">+</a>
 							</div>
 							<div class="box-content">
@@ -111,46 +111,27 @@
 									<div class="dogarchaive-shelter">등록 보호소</div>
 									<div class="dogarchaive-date">보호 날짜</div>
 								</div>
-								<div class="dashboard-list-row dogarchive">
-									<div class="dogarchive-number">4</div>
-									<div class="dogarchive-name">흰둥이</div>
-									<div class="dogarchive-age">5 살</div>
-									<div class="dogarchive-type">푸들</div>
-									<div class="dogarchaive-shelter">희망 보호소</div>
-									<div class="dogarchaive-date">2025-12-14</div>
-								</div>
-								<div class="dashboard-list-row dogarchive">
-									<div class="dogarchive-number">4</div>
-									<div class="dogarchive-name">흰둥이</div>
-									<div class="dogarchive-age">5 살</div>
-									<div class="dogarchive-type">푸들</div>
-									<div class="dogarchaive-shelter">희망 보호소</div>
-									<div class="dogarchaive-date">2025-12-14</div>
-								</div>
-								<div class="dashboard-list-row dogarchive">
-									<div class="dogarchive-number">4</div>
-									<div class="dogarchive-name">흰둥이</div>
-									<div class="dogarchive-age">5 살</div>
-									<div class="dogarchive-type">푸들</div>
-									<div class="dogarchaive-shelter">희망 보호소</div>
-									<div class="dogarchaive-date">2025-12-14</div>
-								</div>
-								<div class="dashboard-list-row dogarchive">
-									<div class="dogarchive-number">4</div>
-									<div class="dogarchive-name">흰둥이</div>
-									<div class="dogarchive-age">5 살</div>
-									<div class="dogarchive-type">푸들</div>
-									<div class="dogarchaive-shelter">희망 보호소</div>
-									<div class="dogarchaive-date">2025-12-14</div>
-								</div>
-								<div class="dashboard-list-row dogarchive">
-									<div class="dogarchive-number">4</div>
-									<div class="dogarchive-name">흰둥이</div>
-									<div class="dogarchive-age">5 살</div>
-									<div class="dogarchive-type">푸들</div>
-									<div class="dogarchaive-shelter">희망 보호소</div>
-									<div class="dogarchaive-date">2025-12-14</div>
-								</div>
+
+								<c:choose>
+									<c:when test="${not empty archiveList}">
+										<c:forEach var="arc" items="${archiveList}">
+											<div class="dashboard-list-row dogarchive">
+												<div class="dogarchive-number">${arc.dogNumber}</div>
+												<div class="dogarchive-name">${arc.dogName}</div>
+												<div class="dogarchive-age">${arc.dogAge}</div>
+												<div class="dogarchive-type">${arc.dogBreed}</div>
+												<div class="dogarchaive-shelter">${arc.shelterName}</div>
+												<div class="dogarchaive-date">${arc.dogSafeDate }</div>
+											</div>
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<div class="dashboard-list-row no-data">
+											<div>현재 등록된 강아지가 없습니다</div>
+										</div>
+									</c:otherwise>
+								</c:choose>
+
 							</div>
 						</article>
 					</li>
@@ -166,46 +147,29 @@
 								<div class="dashboard-list-row dogcare">
 									<div class="dogcare-number">번호</div>
 									<div class="dogcare-title first-row">제목</div>
-									<div class="dogcare-id">봉사 날짜</div>
+									<div class="dogcare-date">봉사 날짜</div>
 									<div class="dogcare-nickname">작성자</div>
-									<div class="dogcare-date">작성 날짜</div>
+									<div class="dogcare-wrtie-date">작성 날짜</div>
 								</div>
 
-								<div class="dashboard-list-row dogcare">
-									<div class="dogcare-number">1</div>
-									<div class="dogcare-title">봉사활동 모집</div>
-									<div class="dogcare-id">2026-03-20</div>
-									<div class="dogcare-nickname">hop123</div>
-									<div class="dogcare-date">2026-03-01</div>
-								</div>
-								<div class="dashboard-list-row dogcare">
-									<div class="dogcare-number">1</div>
-									<div class="dogcare-title">봉사활동 모집</div>
-									<div class="dogcare-id">2026-03-20</div>
-									<div class="dogcare-nickname">hop123</div>
-									<div class="dogcare-date">2026-03-01</div>
-								</div>
-								<div class="dashboard-list-row dogcare">
-									<div class="dogcare-number">1</div>
-									<div class="dogcare-title">봉사활동 모집</div>
-									<div class="dogcare-id">2026-03-20</div>
-									<div class="dogcare-nickname">hop123</div>
-									<div class="dogcare-date">2026-03-01</div>
-								</div>
-								<div class="dashboard-list-row dogcare">
-									<div class="dogcare-number">1</div>
-									<div class="dogcare-title">봉사활동 모집</div>
-									<div class="dogcare-id">2026-03-20</div>
-									<div class="dogcare-nickname">hop123</div>
-									<div class="dogcare-date">2026-03-01</div>
-								</div>
-								<div class="dashboard-list-row dogcare">
-									<div class="dogcare-number">1</div>
-									<div class="dogcare-title">봉사활동 모집</div>
-									<div class="dogcare-id">2026-03-20</div>
-									<div class="dogcare-nickname">hop123</div>
-									<div class="dogcare-date">2026-03-01</div>
-								</div>
+								<c:choose>
+									<c:when test="${not empty careList}">
+										<c:forEach var="care" items="${careList}">
+											<div class="dashboard-list-row dogarchive">
+												<div class="dogcare-number">${care.careNumber}</div>
+												<div class="dogcare-title">${care.careTitle}</div>
+												<div class="dogcare-date">${care.careDate}</div>
+												<div class="dogcare-nickname">${care.userNickname}</div>
+												<div class="dogcare-wrtie-date">${care.careWriteDate}</div>
+											</div>
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<div class="dashboard-list-row no-data">
+											<div>작성된 멍! 케어가 없습니다.</div>
+										</div>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</article>
 					</li>
@@ -240,8 +204,7 @@
 									</c:when>
 									<c:otherwise>
 										<div class="dashboard-list-row no-data">
-											<div style="width: 100%; text-align: center;">작성된 로그가
-												없습니다.</div>
+											<div>작성된 멍! 로그가 없습니다</div>
 										</div>
 									</c:otherwise>
 								</c:choose>
@@ -285,7 +248,7 @@
 									</c:when>
 									<c:otherwise>
 										<div class="dashboard-list-row no-data">
-											<div>접수된 문의사항이 없습니다.</div>
+											<div>접수된 문의사항이 없습니다</div>
 										</div>
 									</c:otherwise>
 								</c:choose>

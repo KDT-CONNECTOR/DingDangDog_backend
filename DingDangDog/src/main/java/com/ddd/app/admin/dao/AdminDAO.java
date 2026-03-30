@@ -113,6 +113,14 @@ public class AdminDAO {
 		System.out.println("보호소회원 상세 조회 실행 : " + userNumber);
 		return sqlSession.selectOne("adminUser.selectShelterDetail", userNumber);
 	}
+	
+
+	// 대시보드용 케아리스트
+	public List<AdminCareDTO> getDashboardCareList() {
+		System.out.println("대시보드용 케어리스트 호출");
+		return sqlSession.selectList("adminCare.getDashboardCareList");
+	}
+	
 
 	// 보호소 승인 업데이트
 	public void updateShelterCertification(int userNumber) {

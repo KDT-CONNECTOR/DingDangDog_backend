@@ -2,6 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminCare">
 
+	<!-- 대시보드용 블랙리스트 조회 -->
+	<select id="getDashboardCareList" resultType="AdminCareDTO"> 
+	<![CDATA[ 
+	SELECT * FROM
+		(SELECT c.care_number, c.care_title, c.care_date, 
+				u.user_nickname ,c.care_write_date
+		FROM ddd_care c	JOIN ddd_user u 
+		ON c.user_number = u.user_number
+		WHERE c.care_status = 'open'
+		ORDER BY c.care_date asc)
+	WHERE rownum <= 5
+	]]>
+	</select>
+	
+
 	<select id="getCareTotal" parameterType="map" resultType="int">
 		SELECT COUNT(*)
 		FROM DDD_CARE c
